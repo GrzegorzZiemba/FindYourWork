@@ -4,6 +4,7 @@ import { db } from "./firebase/firebase";
 import { v4 as uuidv4 } from "uuid";
 import AddJobForm from "./components/AddJobForm";
 import EditJobForm from "./components/EditJobForm";
+import DeleteData from "./components/DeleteData";
 
 require("dotenv").config();
 
@@ -116,6 +117,7 @@ class App extends Component {
 							<>
 								<h1 key={index}>{item.work}</h1>
 								<Link to={`/edit/${item.id}`}>Edit</Link>
+								<DeleteData id={item.id} />
 							</>
 						);
 					})}
