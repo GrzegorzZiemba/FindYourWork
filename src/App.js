@@ -10,6 +10,7 @@ require("dotenv").config();
 
 class App extends Component {
 	constructor(props) {
+		Ŕ;
 		super(props);
 		console.log("Konstruktor -> klasowy");
 		this.handleChange = this.handleChange.bind(this);
