@@ -10,7 +10,7 @@ const firebaseConfig = {
     projectId: "findyourwork-95deb",
     storageBucket: "findyourwork-95deb.appspot.com",
     messagingSenderId: "580788546593",
-    appId: process.send.REACT_APP_APP_ID,
+    appId: process.env.REACT_APP_APP_ID,
     measurementId: "G-MHY571Q5Y2"
   };
 
