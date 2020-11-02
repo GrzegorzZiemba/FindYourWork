@@ -1,16 +1,17 @@
 import React, { Component } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { db } from "./firebase/firebase";
 import { v4 as uuidv4 } from "uuid";
 import AddJobForm from "./components/AddJobForm";
 import EditJobForm from "./components/EditJobForm";
 import DeleteData from "./components/DeleteData";
+import { Button, Nav, Navbar } from "react-bootstrap";
 
 require("dotenv").config();
 
 class App extends Component {
 	constructor(props) {
-		Ŕ;
 		super(props);
 		console.log("Konstruktor -> klasowy");
 		this.handleChange = this.handleChange.bind(this);
@@ -77,22 +78,17 @@ class App extends Component {
 			<div className="App">
 				<Router>
 					<div>
-						<nav>
-							<ul>
-								<li>
-									<Link to="/">Home</Link>
-								</li>
-								<li>
-									<Link to="/addnewjob">Post your offer</Link>
-								</li>
-								<li>
-									<Link to="/users">Users</Link>
-								</li>
-							</ul>
-						</nav>
+						<Navbar bg="dark" variant="dark">
+							<Navbar.Brand href="/">Navbar</Navbar.Brand>
+							<Nav className="mr-auto">
+								<Nav.Link href="/">Home</Nav.Link>
+								<Nav.Link href="/addnewjob">Post your offer !</Nav.Link>
+								<Nav.Link href="/users">Users</Nav.Link>
+							</Nav>
 
-						{/* A <Switch> looks through its children <Route>s and
-                renders the first one that matches the current URL. */}
+							<Button variant="outline-info">Search</Button>
+						</Navbar>
+
 						<Switch>
 							<Route path="/addnewjob">
 								<AddJobForm
