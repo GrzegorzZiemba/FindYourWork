@@ -1,7 +1,6 @@
 import React from "react";
 import { db } from "../firebase/firebase";
-import { Redirect } from "react-router-dom";
-import { Badge, Button, Form } from "react-bootstrap";
+import { Badge, Button } from "react-bootstrap";
 
 const DeleteData = ({ id }) => {
 	return (
@@ -9,7 +8,6 @@ const DeleteData = ({ id }) => {
 			<Button
 				variant="primary"
 				onClick={() => db.collection("workplaces").doc(id).delete()}
-				href="/"
 			>
 				to Primary
 			</Button>{" "}

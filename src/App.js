@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { db } from "./firebase/firebase";
-import { v4 as uuidv4 } from "uuid";
 import AddJobForm from "./components/AddJobForm";
 import EditJobForm from "./components/EditJobForm";
 import DeleteData from "./components/DeleteData";
-import { Button, Nav, Navbar } from "react-bootstrap";
+import Navigation from "./components/Navigation";
 
 require("dotenv").config();
 
@@ -24,14 +23,6 @@ class App extends Component {
 		salary: 0,
 	};
 	componentDidMount() {
-		// console.log('Component Did Mount')
-		// // fetch('https://findyourwork-95deb.firebaseio.com/kolekcjadruga.json', {method: 'POST', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify([{wokrplace: 'nazwa miejsca'},{workplace:'2'},{workplace:'3'}])})
-		// fetch('https://findyourwork-95deb.firebaseio.com/kolekcjadruga.json')
-		//   .then(response => response.json())
-		//   .then(data => {
-		//     console.log(data)
-		//     // this.setState({data: data})
-		//   })
 		console.log(db.collection("workplaces"));
 
 		db.collection("workplaces").onSnapshot((snapshot) => {
@@ -44,50 +35,20 @@ class App extends Component {
 		});
 	}
 
-	// componentDidUpdate() {
-	// 	console.log("COMPONENT DID UPDATE");
-	// }
-
 	handleChange = (e) => {
 		let nam = e.target.name;
 		let val = e.target.value;
 		this.setState({ [nam]: val });
 	};
 
-	handleSubmit = (e) => {
-		e.preventDefault();
-		const id = uuidv4();
-		console.log(this.state.salary);
-		db.collection("workplaces").doc(id).set({
-			work: this.state.companyName,
-			position: this.state.position,
-			salary: this.state.salary,
-			id: id,
-		});
-	};
-
-	editItem = (item) => {};
 	render() {
-		// console.log('Render')
-		// const keys = Object.keys(this.state.data)
-		// console.log(keys)
-
 		console.log(this.state.value);
 
 		return (
 			<div className="App">
 				<Router>
 					<div>
-						<Navbar bg="dark" variant="dark">
-							<Navbar.Brand href="/">Navbar</Navbar.Brand>
-							<Nav className="mr-auto">
-								<Nav.Link href="/">Home</Nav.Link>
-								<Nav.Link href="/addnewjob">Post your offer !</Nav.Link>
-								<Nav.Link href="/users">Users</Nav.Link>
-							</Nav>
-
-							<Button variant="outline-info">Search</Button>
-						</Navbar>
+						<Navigation />
 
 						<Switch>
 							<Route path="/addnewjob">

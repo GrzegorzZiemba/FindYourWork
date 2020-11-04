@@ -39,6 +39,7 @@ const EditJobForm = () => {
 					<Form.Label>Position</Form.Label>
 					<Form.Control
 						type="text"
+						ć
 						placeholder="Who are you looking for ?"
 						value={position}
 						onChange={(e) => setPosition(e.target.value)}
