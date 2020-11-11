@@ -6,6 +6,7 @@ import AddJobForm from "./components/AddJobForm";
 import EditJobForm from "./components/EditJobForm";
 import DeleteData from "./components/DeleteData";
 import Navigation from "./components/Navigation";
+import Singup from "./components/Singup";
 
 require("dotenv").config();
 
@@ -64,6 +65,7 @@ class App extends Component {
 							<Route path="/" exact>
 								Home
 							</Route>
+							<Route path="/signup" component={Singup} />
 							<Route path="/edit/:jobId" exact>
 								<EditJobForm />
 							</Route>

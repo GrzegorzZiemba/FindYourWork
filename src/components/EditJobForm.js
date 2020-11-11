@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase/firebase";
 import { Form, Button } from "react-bootstrap";
@@ -18,6 +18,28 @@ const EditJobForm = () => {
 		});
 		console.log(work);
 	};
+
+	useEffect(() => {
+		console.log(jobId);
+		const docRef = db.collection("workplaces").doc(jobId);
+
+		docRef
+			.get()
+			.then(function (doc) {
+				if (doc.exists) {
+					setWork(doc.data().work);
+					setPosition(doc.data().position);
+					setSalary(doc.data().salary);
+				} else {
+					// doc.data() will be undefined in this case
+					console.log("No such document!");
+				}
+			})
+			.catch(function (error) {
+				console.log("Error getting document:", error);
+			});
+	}, []);
+
 	return (
 		<div>
 			<Form>
@@ -25,7 +47,7 @@ const EditJobForm = () => {
 					<Form.Label>Company name</Form.Label>
 					<Form.Control
 						type="text"
-						placeholder="Company Name"
+						placeholder={work}
 						value={work}
 						onChange={(e) => setWork(e.target.value)}
 					/>
@@ -39,8 +61,7 @@ const EditJobForm = () => {
 					<Form.Label>Position</Form.Label>
 					<Form.Control
 						type="text"
-						ć
-						placeholder="Who are you looking for ?"
+						placeholder={position}
 						value={position}
 						onChange={(e) => setPosition(e.target.value)}
 					/>
@@ -49,7 +70,7 @@ const EditJobForm = () => {
 					<Form.Label>Salary</Form.Label>
 					<Form.Control
 						type="number"
-						placeholder="How much your future employee will earn?"
+						placeholder={salary}
 						value={salary}
 						onChange={(e) => setSalary(e.target.value)}
 					/>
