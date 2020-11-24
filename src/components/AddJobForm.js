@@ -3,10 +3,11 @@ import { Form, Button } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "../firebase/firebase";
 
-const AddJobForm = ({ submit }) => {
+const AddJobForm = () => {
 	const [work, setWork] = useState("");
 	const [position, setPosition] = useState("");
 	const [salary, setSalary] = useState("");
+	const [image, setImage] = useState("");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -16,6 +17,7 @@ const AddJobForm = ({ submit }) => {
 			work: work,
 			position: position,
 			salary: salary,
+			image: image,
 			id: id,
 		});
 	};
@@ -37,7 +39,7 @@ const AddJobForm = ({ submit }) => {
 				</Form.Text>
 			</Form.Group>
 
-			<Form.Group controlId="formBasicPassword">
+			<Form.Group controlId="formBasicText">
 				<Form.Label>Position</Form.Label>
 				<Form.Control
 					type="text"
@@ -46,13 +48,22 @@ const AddJobForm = ({ submit }) => {
 					onChange={(e) => setPosition(e.target.value)}
 				/>
 			</Form.Group>
-			<Form.Group controlId="formBasicPassword">
+			<Form.Group controlId="formBasicText">
 				<Form.Label>Salary</Form.Label>
 				<Form.Control
 					type="number"
 					placeholder="How much your future employee will earn?"
 					value={salary}
 					onChange={(e) => setSalary(e.target.value)}
+				/>
+			</Form.Group>
+			<Form.Group controlId="formBasicText">
+				<Form.Label>Salary</Form.Label>
+				<Form.Control
+					type="string"
+					placeholder="PutImg"
+					value={image}
+					onChange={(e) => setImage(e.target.value)}
 				/>
 			</Form.Group>
 			<Button variant="primary" type="submit" onClick={handleSubmit}>

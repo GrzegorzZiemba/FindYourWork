@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { db } from "./firebase/firebase";
+import { db, fbase } from "./firebase/firebase";
 import AddJobForm from "./components/AddJobForm";
 import EditJobForm from "./components/EditJobForm";
 import DeleteData from "./components/DeleteData";
 import Navigation from "./components/Navigation";
 import Singup from "./components/Singup";
+import ImageHexa from "./components/ImageHexa";
+import ShowOffers from "./components/ShowOffers";
 
 require("dotenv").config();
 
@@ -19,9 +21,9 @@ class App extends Component {
 
 	state = {
 		data: [],
-		companyName: "",
-		position: "",
-		salary: 0,
+
+		currentUser: null,
+		pend: false,
 	};
 	componentDidMount() {
 		console.log(db.collection("workplaces"));
@@ -33,6 +35,10 @@ class App extends Component {
 			});
 			console.log(snapshot.docs.map((doc) => doc.data()));
 			this.setState({ data: fu });
+		});
+
+		fbase.auth().onAuthStateChanged((user) => {
+			this.setState({ currentUser: user, pend: false });
 		});
 	}
 
@@ -49,17 +55,11 @@ class App extends Component {
 			<div className="App">
 				<Router>
 					<div>
-						<Navigation />
+						<Navigation user={this.state.currentUser} />
 
 						<Switch>
 							<Route path="/addnewjob">
-								<AddJobForm
-									submit={this.handleSubmit}
-									change={this.handleChange}
-									companyName={this.state.companyName}
-									position={this.state.position}
-									salary={this.state.salary}
-								/>
+								<AddJobForm />
 							</Route>
 							<Route path="/users">Users</Route>
 							<Route path="/" exact>
@@ -75,9 +75,12 @@ class App extends Component {
 						console.log(item);
 						return (
 							<>
-								<h1 key={index}>{item.work}</h1>
-								<Link to={`/edit/${item.id}`}>Edit</Link>
-								<DeleteData id={item.id} />
+								<ShowOffers
+									workplace={item.work}
+									id={item.id}
+									image={item.image}
+									position={item.position}
+								/>
 							</>
 						);
 					})}

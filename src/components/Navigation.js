@@ -1,27 +1,40 @@
 import React from "react";
+import { Link, withRouter } from "react-router-dom";
 import { Button, Nav, Navbar } from "react-bootstrap";
-import { fbase } from "../firebase/firebase";
+
 import Login from "./Login";
 
-var user = fbase.auth().currentUser;
+// Private and public routes -> what is visible for them  - logged or not
+// Make it look better :)
+// better form to login -> alltogether look it better :D
 
-fbase.auth().onAuthStateChanged(function (user) {
-	if (user) {
-		// User is signed in.
-	} else {
-		// No user is signed in.
-	}
-});
-
-const Navigation = () => {
+const Navigation = ({ user, history }) => {
 	return (
 		<div>
 			<Navbar bg="dark" variant="dark">
 				<Navbar.Brand href="/">Navbar</Navbar.Brand>
 				<Nav className="mr-auto">
-					<Nav.Link href="/">Home</Nav.Link>
-					<Nav.Link href="/addnewjob">Post your offer !</Nav.Link>
-					<Nav.Link href="/users">Users</Nav.Link>
+					<Nav.Link
+						onClick={() => {
+							history.push("/");
+						}}
+					>
+						Home!
+					</Nav.Link>
+					<Nav.Link
+						onClick={() => {
+							history.push("/addnewjob");
+						}}
+					>
+						Post your offer !
+					</Nav.Link>
+					<Nav.Link
+						onClick={() => {
+							history.push("/users");
+						}}
+					>
+						Users
+					</Nav.Link>
 				</Nav>
 
 				<Button variant="outline-info">{user ? user.email : ""}</Button>
@@ -31,4 +44,4 @@ const Navigation = () => {
 	);
 };
 
-export default Navigation;
+export default withRouter(Navigation);

@@ -1,0 +1,39 @@
+.main {
+	margin: 0 auto;
+
+	text-align: center;
+	width: 1000px;
+}
+
+.outOffer {
+	display: flex;
+	position: relative;
+
+	margin: 30px;
+}
+
+.outOffer .line {
+	position: absolute;
+	top: 148px;
+	left: 20px;
+	color: black;
+	background-color: black;
+	width: 900px;
+	height: 4px;
+}
+
+.outOffer .workplace {
+	position: absolute;
+	top: 60px;
+	left: 330px;
+}
+.outOffer .position {
+	position: absolute;
+	bottom: 60px;
+	left: 330px;
+}
+.buttons {
+	position: absolute;
+	right: 55px;
+	bottom: 30px;
+}
