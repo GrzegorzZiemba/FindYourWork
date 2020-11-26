@@ -7,16 +7,11 @@ import EditJobForm from "./components/EditJobForm";
 import Navigation from "./components/Navigation";
 import Singup from "./components/Singup";
 import ShowOffers from "./components/ShowOffers";
+import Home from "./components/Home";
 
 require("dotenv").config();
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-		console.log("Konstruktor -> klasowy");
-		this.handleChange = this.handleChange.bind(this);
-	}
-
 	state = {
 		data: [],
 
@@ -24,31 +19,11 @@ class App extends Component {
 		pend: false,
 	};
 	componentDidMount() {
-		console.log(db.collection("workplaces"));
-
-		db.collection("workplaces").onSnapshot((snapshot) => {
-			const fu = snapshot.docs.map((doc) => {
-				console.log(doc);
-				return doc.data();
-			});
-			console.log(snapshot.docs.map((doc) => doc.data()));
-			this.setState({ data: fu });
-		});
-
 		fbase.auth().onAuthStateChanged((user) => {
 			this.setState({ currentUser: user, pend: false });
 		});
 	}
-
-	handleChange = (e) => {
-		let nam = e.target.name;
-		let val = e.target.value;
-		this.setState({ [nam]: val });
-	};
-
 	render() {
-		console.log(this.state.value);
-
 		return (
 			<div className="App">
 				<Router>
@@ -60,29 +35,14 @@ class App extends Component {
 								<AddJobForm />
 							</Route>
 							<Route path="/users">Users</Route>
-							<Route path="/" exact>
-								Home
-							</Route>
-							<Route path="/signup" component={Singup} />
+							<Route path="/" component={Home} exact />
+
+							<Route path="/signup" component={Singup} exact />
 							<Route path="/edit/:jobId" exact>
 								<EditJobForm />
 							</Route>
 						</Switch>
 					</div>
-					{this.state.data.map((item, index) => {
-						console.log(index);
-						return (
-							<>
-								<ShowOffers
-									workplace={item.work}
-									id={item.id}
-									image={item.image}
-									position={item.position}
-									styleClass="right"
-								/>
-							</>
-						);
-					})}
 				</Router>
 			</div>
 		);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "../firebase/firebase";
+import TextField from "@material-ui/core/TextField";
 
 const AddJobForm = () => {
 	const [work, setWork] = useState("");
@@ -25,48 +26,43 @@ const AddJobForm = () => {
 	return (
 		// <form onSubmit={submit}>
 		<Form onSubmit={handleSubmit}>
-			<Form.Group controlId="formBasicEmail">
-				<Form.Label>Company name</Form.Label>
-				<Form.Control
-					type="text"
-					placeholder="Company Name"
-					value={work}
-					onChange={(e) => setWork(e.target.value)}
-				/>
-				<Form.Text className="text-muted">
-					Your company name is very important for us, let your future employee
-					know who you are ! :)
-				</Form.Text>
-			</Form.Group>
-
-			<Form.Group controlId="formBasicText">
-				<Form.Label>Position</Form.Label>
-				<Form.Control
-					type="text"
-					placeholder="Who are you looking for ?"
-					value={position}
-					onChange={(e) => setPosition(e.target.value)}
-				/>
-			</Form.Group>
-			<Form.Group controlId="formBasicText">
-				<Form.Label>Salary</Form.Label>
-				<Form.Control
-					type="number"
-					placeholder="How much your future employee will earn?"
-					value={salary}
-					onChange={(e) => setSalary(e.target.value)}
-				/>
-			</Form.Group>
-			<Form.Group controlId="formBasicText">
-				<Form.Label>Salary</Form.Label>
-				<Form.Control
-					type="string"
-					placeholder="PutImg"
-					value={image}
-					onChange={(e) => setImage(e.target.value)}
-				/>
-			</Form.Group>
-			<Button variant="primary" type="submit" onClick={handleSubmit}>
+			<TextField
+				id="standard-basic"
+				label="Company Name"
+				type="text"
+				placeholder="Company Name"
+				value={work}
+				onChange={(e) => setWork(e.target.value)}
+			/>
+			<TextField
+				id="standard-basic"
+				label="Position of the"
+				type="text"
+				placeholder="Who are you looking for ?"
+				value={position}
+				onChange={(e) => setPosition(e.target.value)}
+			/>
+			<TextField
+				id="standard-basic"
+				label="Salary"
+				type="number"
+				placeholder="How much your future employee will earn?"
+				value={salary}
+				onChange={(e) => setSalary(e.target.value)}
+			/>
+			<TextField
+				id="standard-basic"
+				label="image"
+				type="text"
+				placeholder="Put image src"
+				value={image}
+				onChange={(e) => setImage(e.target.value)}
+			/>
+			<Button
+				style={{ background: "#705439", border: "none" }}
+				type="submit"
+				onClick={handleSubmit}
+			>
 				Submit
 			</Button>
 		</Form>
