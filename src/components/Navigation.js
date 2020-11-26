@@ -11,8 +11,8 @@ import Login from "./Login";
 const Navigation = ({ user, history }) => {
 	return (
 		<div>
-			<Navbar bg="dark" variant="dark">
-				<Navbar.Brand href="/">Navbar</Navbar.Brand>
+			<Navbar style={{ background: "#BD7028 ", border: "none" }}>
+				<Navbar.Brand href="/">NAV</Navbar.Brand>
 				<Nav className="mr-auto">
 					<Nav.Link
 						onClick={() => {
@@ -37,7 +37,9 @@ const Navigation = ({ user, history }) => {
 					</Nav.Link>
 				</Nav>
 
-				<Button variant="outline-info">{user ? user.email : ""}</Button>
+				<Button style={{ background: "#F08E32 ", border: "none" }}>
+					{user ? user.email : ""}
+				</Button>
 			</Navbar>
 			<Login />
 		</div>

@@ -6,12 +6,11 @@ const DeleteData = ({ id }) => {
 	return (
 		<>
 			<Button
-				variant="primary"
+				style={{ background: "#BD7028 ", border: "none" }}
 				onClick={() => db.collection("workplaces").doc(id).delete()}
 			>
-				to Primary
+				Delete
 			</Button>{" "}
-			<Badge variant="secondary">xD</Badge>
 		</>
 	);
 };

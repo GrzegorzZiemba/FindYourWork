@@ -1,26 +1,36 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+
 import { Link } from "react-router-dom";
 import DeleteData from "./DeleteData";
 import ImageHexa from "./ImageHexa";
 import "./ShowOffers.css";
 
-const ShowOffers = ({ image, id, workplace, position }) => {
+const ShowOffers = ({ image, id, workplace, position, styleClass }) => {
+	console.log("left");
 	return (
 		<div className="main">
-			<div className="outOffer">
+			<div className={styleClass}>
 				<span className="line"></span>
 
 				<ImageHexa
-					image={image ? image : "http://csshexagon.com/img/meow.jpg"}
+					image={
+						image
+							? image
+							: "https://m.economictimes.com/thumb/msid-67969364,width-1200,height-900,resizemode-4,imgsize-90851/bee.jpg"
+					}
 				/>
 				<h1 className="workplace"> {workplace} </h1>
 				<h1 className="position" key={workplace}>
 					{position}
 				</h1>
 				<div className="buttons">
-					<Link to={`/edit/${id}`}>Edit</Link>
-					<DeleteData id={id} />
+					<Link to={`/edit/${id}`}>
+						<Button style={{ background: "#BD7028 ", border: "none" }}>
+							Edit
+						</Button>
+					</Link>
+					<DeleteData id={id} className="button" />
 				</div>
 			</div>
 		</div>

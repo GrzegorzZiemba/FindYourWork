@@ -5,29 +5,29 @@
 	width: 1000px;
 }
 
-.outOffer {
+.right {
 	display: flex;
 	position: relative;
 
 	margin: 30px;
 }
 
-.outOffer .line {
+.right .line {
 	position: absolute;
 	top: 148px;
 	left: 20px;
-	color: black;
-	background-color: black;
+
+	background-color: #705439;
 	width: 900px;
 	height: 4px;
 }
 
-.outOffer .workplace {
+.right .workplace {
 	position: absolute;
 	top: 60px;
 	left: 330px;
 }
-.outOffer .position {
+.right .position {
 	position: absolute;
 	bottom: 60px;
 	left: 330px;
@@ -36,4 +36,7 @@
 	position: absolute;
 	right: 55px;
 	bottom: 30px;
+	display: flex;
+	justify-content: space-around;
+	width: 150px;
 }

@@ -30,6 +30,7 @@
 	-ms-transform: rotate(-60deg);
 	-o-transform: rotate(-60deg);
 	transform: rotate(-60deg);
+	box-shadow: inset 0px 0px 250px #705439;
 }
 .hexagon1 {
 	width: 400px;

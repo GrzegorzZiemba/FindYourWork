@@ -4,10 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { db, fbase } from "./firebase/firebase";
 import AddJobForm from "./components/AddJobForm";
 import EditJobForm from "./components/EditJobForm";
-import DeleteData from "./components/DeleteData";
 import Navigation from "./components/Navigation";
 import Singup from "./components/Singup";
-import ImageHexa from "./components/ImageHexa";
 import ShowOffers from "./components/ShowOffers";
 
 require("dotenv").config();
@@ -72,7 +70,7 @@ class App extends Component {
 						</Switch>
 					</div>
 					{this.state.data.map((item, index) => {
-						console.log(item);
+						console.log(index);
 						return (
 							<>
 								<ShowOffers
@@ -80,6 +78,7 @@ class App extends Component {
 									id={item.id}
 									image={item.image}
 									position={item.position}
+									styleClass="right"
 								/>
 							</>
 						);
