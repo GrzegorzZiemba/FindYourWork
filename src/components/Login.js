@@ -1,8 +1,11 @@
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import { fbase } from "../firebase/firebase.js";
+import "firebase/auth";
+import firebase from "firebase/app";
 
 const Login = ({ history }) => {
+	const auth = firebase.auth();
 	const handleLogin = useCallback(
 		async (event) => {
 			event.preventDefault();
@@ -20,6 +23,11 @@ const Login = ({ history }) => {
 		[history]
 	);
 
+	const signInWithGoogle = () => {
+		const provider = new firebase.auth.GoogleAuthProvider();
+		auth.signInWithPopup(provider);
+	};
+
 	return (
 		<div>
 			<h1>Log in</h1>
@@ -34,6 +42,12 @@ const Login = ({ history }) => {
 				</label>
 				<button type="submit">Log in</button>
 			</form>
+			<button className="sign-in" onClick={signInWithGoogle}>
+				Sign in with Google
+			</button>
+			<p>
+				Do not violate the community guidelines or you will be banned for life!
+			</p>
 		</div>
 	);
 };
