@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Button, Nav, Navbar } from "react-bootstrap";
-
+import SignOut from "./SignOut";
 import Login from "./Login";
 
 // Private and public routes -> what is visible for them  - logged or not
@@ -40,6 +40,7 @@ const Navigation = ({ user, history }) => {
 				<Button style={{ background: "#F08E32 ", border: "none" }}>
 					{user ? user.email : ""}
 				</Button>
+				<SignOut />
 			</Navbar>
 			<Login />
 		</div>
