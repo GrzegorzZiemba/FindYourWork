@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { db, fbase } from "../firebase/firebase";
 import { Form, Button } from "react-bootstrap";
 import { TextField } from "@material-ui/core";
+import ShowOffers from "./ShowOffers";
+import "./EditJobForm.css";
 
 const auth = fbase.auth();
 
@@ -11,7 +13,9 @@ const EditJobForm = () => {
 	const [work, setWork] = useState("");
 	const [position, setPosition] = useState("");
 	const [salary, setSalary] = useState("");
+	const [image, setImage] = useState("");
 	const uid = auth.currentUser.uid;
+	const history = useHistory();
 
 	const editItem = (e) => {
 		e.preventDefault();
@@ -19,8 +23,10 @@ const EditJobForm = () => {
 			work: work,
 			position: position,
 			salary: salary,
+			image: image,
 		});
 		console.log(work);
+		history.push("/");
 	};
 
 	useEffect(() => {
@@ -33,6 +39,7 @@ const EditJobForm = () => {
 					setWork(doc.data().work);
 					setPosition(doc.data().position);
 					setSalary(doc.data().salary);
+					setImage(doc.data().image);
 				} else {
 					// doc.data() will be undefined in this case
 					console.log("No such document!");
@@ -47,37 +54,44 @@ const EditJobForm = () => {
 	return (
 		<div>
 			{uid ? (
-				<Form>
-					<TextField
-						id="standard-basic"
-						label="image"
-						type="text"
-						placeholder={work}
-						value={work}
-						onChange={(e) => setWork(e.target.value)}
-					/>
-					<TextField
-						id="standard-basic"
-						label="image"
-						type="text"
-						placeholder={position}
-						value={position}
-						onChange={(e) => setPosition(e.target.value)}
-					/>
+				<React.Fragment className="oneByOne">
+					<Form className="oneByOne">
+						<TextField
+							id="standard-basic"
+							type="text"
+							placeholder={work}
+							value={work}
+							onChange={(e) => setWork(e.target.value)}
+						/>
+						<TextField
+							id="standard-basic"
+							type="text"
+							placeholder={position}
+							value={position}
+							onChange={(e) => setPosition(e.target.value)}
+						/>
 
-					<TextField
-						id="standard-basic"
-						label="image"
-						type="number"
-						placeholder={salary}
-						value={salary}
-						onChange={(e) => setSalary(e.target.value)}
-					/>
+						<TextField
+							id="standard-basic"
+							type="number"
+							placeholder={salary}
+							value={salary}
+							onChange={(e) => setSalary(e.target.value)}
+						/>
 
-					<Button variant="primary" type="submit" onClick={editItem}>
-						Submit
-					</Button>
-				</Form>
+						<TextField
+							id="standard-basic"
+							type="text"
+							placeholder={image}
+							value={image}
+							onChange={(e) => setImage(e.target.value)}
+						/>
+						<Button variant="primary" type="submit" onClick={editItem}>
+							Submit
+						</Button>
+					</Form>
+					<ShowOffers orkplace={work} image={image} position={position} />
+				</React.Fragment>
 			) : (
 				<p> NOtHinG</p>
 			)}

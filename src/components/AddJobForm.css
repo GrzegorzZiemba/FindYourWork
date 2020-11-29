@@ -1,0 +1,23 @@
+.oneByOne {
+	margin: 0 auto;
+	display: flex !important;
+	flex-direction: column !important;
+	max-width: 1000px;
+}
+
+.subButton {
+	margin: 40px;
+}
+
+.textArea {
+	background-color: #fa9335 !important;
+	color: black !important;
+	border: 1px solid black;
+}
+::placeholder {
+	color: black;
+}
+
+h5 {
+	margin: 20px;
+}

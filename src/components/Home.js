@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ShowOffers from "./ShowOffers";
 import { db, fbase } from "../firebase/firebase";
+import "./ShowOffers.css";
 require("dotenv").config();
 class Home extends Component {
 	constructor(props) {
@@ -41,24 +42,22 @@ class Home extends Component {
 
 	render() {
 		return (
-			<>
+			<div className="main">
 				{console.log(this.state.data)}
 				{this.state.data.map((item, index) => {
 					console.log("home");
 					return (
-						<>
-							<ShowOffers
-								workplace={item.work}
-								id={item.id}
-								image={item.image}
-								position={item.position}
-								styleClass="right"
-								iden={item.uid}
-							/>
-						</>
+						<ShowOffers
+							className="item"
+							workplace={item.work}
+							id={item.id}
+							image={item.image}
+							position={item.position}
+							iden={item.uid}
+						/>
 					);
 				})}
-			</>
+			</div>
 		);
 	}
 }

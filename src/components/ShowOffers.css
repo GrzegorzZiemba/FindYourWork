@@ -1,42 +1,7 @@
 .main {
-	margin: 0 auto;
-
-	text-align: center;
-	width: 1000px;
-}
-
-.right {
-	display: flex;
-	position: relative;
-
-	margin: 30px;
-}
-
-.right .line {
-	position: absolute;
-	top: 148px;
-	left: 20px;
-
-	background-color: #705439;
-	width: 900px;
-	height: 4px;
-}
-
-.right .workplace {
-	position: absolute;
-	top: 60px;
-	left: 330px;
-}
-.right .position {
-	position: absolute;
-	bottom: 60px;
-	left: 330px;
-}
-.buttons {
-	position: absolute;
-	right: 55px;
-	bottom: 30px;
+	max-width: 1200px;
+	margin: 30px auto;
 	display: flex;
 	justify-content: space-around;
-	width: 150px;
+	flex-wrap: wrap;
 }

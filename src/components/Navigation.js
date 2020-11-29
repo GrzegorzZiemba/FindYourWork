@@ -4,6 +4,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import SignOut from "./SignOut";
 import Login from "./Login";
+import { TextareaAutosize } from "@material-ui/core";
 
 // Private and public routes -> what is visible for them  - logged or not
 // Make it look better :)
@@ -16,22 +17,27 @@ const Navigation = ({ user, history }) => {
 				<LinkContainer to="/">
 					<Navbar.Brand>{user ? user.email : "Welcome"}</Navbar.Brand>
 				</LinkContainer>
-				<LinkContainer to="/addnewjob">
-					<Navbar.Brand>Add new job offer</Navbar.Brand>
-				</LinkContainer>
-				{user ? (
-					<LinkContainer to="/signout">
-						<Navbar.Brand>Signout</Navbar.Brand>
-					</LinkContainer>
-				) : (
-					<LinkContainer to="/login">
-						<Navbar.Brand>Login</Navbar.Brand>
-					</LinkContainer>
-				)}
 
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+				<Navbar.Collapse id="responsive-navbar-nav">
+					<Nav className="ml-auto">
+						<LinkContainer to="/addnewjob">
+							<Navbar.Brand>Add new job offer</Navbar.Brand>
+						</LinkContainer>
+						{user ? (
+							<LinkContainer to="/signout">
+								<Navbar.Brand>Signout</Navbar.Brand>
+							</LinkContainer>
+						) : (
+							<LinkContainer to="/login">
+								<Navbar.Brand>Login</Navbar.Brand>
+							</LinkContainer>
+						)}
+					</Nav>
+				</Navbar.Collapse>
 			</Container>
 		</Navbar>
+
 		// {/* <Navbar style={{ background: "#BD7028 ", border: "none" }}>
 		// 	<Navbar.Brand href="/">NAV</Navbar.Brand>
 		// 	<Nav className="mr-auto">

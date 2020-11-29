@@ -9,14 +9,15 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import "./ShowOffers.css";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 const auth = fbase.auth();
 
 const useStyles = makeStyles({
 	root: {
-		maxWidth: 345,
+		width: 345,
+		margin: 20,
 	},
 	media: {
 		height: 140,
@@ -39,38 +40,32 @@ const ShowOffers = ({ image, id, workplace, position, styleClass, iden }) => {
 	}, uid);
 	console.log(`iden ${iden}`);
 	return (
-		<div className="main">
-			<Card className={classes.root}>
-				<CardActionArea>
-					<CardMedia
-						className={classes.media}
-						image={image}
-						title={workplace}
-					/>
-					<CardContent>
-						<Typography gutterBottom variant="h5" component="h2">
-							{workplace}
-						</Typography>
-						<Typography variant="body2" color="textSecondary" component="p">
-							{position}
-						</Typography>
-					</CardContent>
-				</CardActionArea>
+		<Card className={classes.root}>
+			<CardActionArea>
+				<CardMedia className={classes.media} image={image} title={workplace} />
+				<CardContent>
+					<Typography gutterBottom variant="h5" component="h2">
+						{workplace}
+					</Typography>
+					<Typography variant="body2" color="textSecondary" component="p">
+						{position}
+					</Typography>
+				</CardContent>
+			</CardActionArea>
 
-				{uid == iden && uid != "" ? (
-					<CardActions>
-						<Link to={`/edit/${id}`}>
-							<Button size="small" color="primary">
-								Edit
-							</Button>
-						</Link>
-						<DeleteData id={id} className="button" />
-					</CardActions>
-				) : (
-					<div>{console.log(uid, iden)}</div>
-				)}
-			</Card>
-		</div>
+			{uid == iden && uid != "" ? (
+				<CardActions>
+					<Link to={`/edit/${id}`}>
+						<Button size="small" color="primary">
+							Edit
+						</Button>
+					</Link>
+					<DeleteData id={id} className="button" />
+				</CardActions>
+			) : (
+				<div>{console.log(uid, iden)}</div>
+			)}
+		</Card>
 	);
 };
 
