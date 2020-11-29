@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { db, fbase } from "../firebase/firebase";
 import TextField from "@material-ui/core/TextField";
+import { Link, useHistory } from "react-router-dom";
 
 const auth = fbase.auth();
 const AddJobForm = () => {
@@ -10,7 +11,7 @@ const AddJobForm = () => {
 	const [position, setPosition] = useState("");
 	const [salary, setSalary] = useState("");
 	const [image, setImage] = useState("");
-
+	const history = useHistory();
 	const { uid } = auth.currentUser == null ? "" : auth.currentUser;
 
 	const handleSubmit = (e) => {
@@ -25,6 +26,7 @@ const AddJobForm = () => {
 			id: id,
 			uid: uid,
 		});
+		history.push("/");
 	};
 	useEffect(() => {
 		const { uid } = auth.currentUser == null ? "" : auth.currentUser;

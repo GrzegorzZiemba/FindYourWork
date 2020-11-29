@@ -40,21 +40,6 @@ const ShowOffers = ({ image, id, workplace, position, styleClass, iden }) => {
 	console.log(`iden ${iden}`);
 	return (
 		<div className="main">
-			{/* <div className={styleClass}>
-				<span className="line"></span>
-
-				<ImageHexa
-					image={
-						image
-							? image
-							: "https://m.economictimes.com/thumb/msid-67969364,width-1200,height-900,resizemode-4,imgsize-90851/bee.jpg"
-					}
-				/>
-				<h1 className="workplace"> {workplace} </h1>
-				<h1 className="position" key={workplace}>
-					{position}
-				</h1> */}
-
 			<Card className={classes.root}>
 				<CardActionArea>
 					<CardMedia

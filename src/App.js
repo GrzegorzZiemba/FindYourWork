@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation";
 import Singup from "./components/Singup";
 import ShowOffers from "./components/ShowOffers";
 import Home from "./components/Home";
+import Login from "./components/Login";
+import SignOut from "./components/SignOut";
 
 require("dotenv").config();
 const auth = fbase.auth();
@@ -39,10 +41,11 @@ class App extends Component {
 
 						<Switch>
 							<Route path="/addnewjob">{uid != "" ? <AddJobForm /> : ""}</Route>
-							<Route path="/users">Users</Route>
-							<Route path="/" component={Home} exact />
 
+							<Route path="/" component={Home} exact />
+							<Route path="/login" component={Login} exact />
 							<Route path="/signup" component={Singup} exact />
+							<Route path="/signout" component={SignOut} exact />
 							<Route path="/edit/:jobId" exact>
 								<EditJobForm />
 							</Route>

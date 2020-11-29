@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import { Button, Nav, Navbar } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import SignOut from "./SignOut";
 import Login from "./Login";
 
@@ -10,40 +11,51 @@ import Login from "./Login";
 
 const Navigation = ({ user, history }) => {
 	return (
-		<div>
-			<Navbar style={{ background: "#BD7028 ", border: "none" }}>
-				<Navbar.Brand href="/">NAV</Navbar.Brand>
-				<Nav className="mr-auto">
-					<Nav.Link
-						onClick={() => {
-							history.push("/");
-						}}
-					>
-						Home!
-					</Nav.Link>
-					<Nav.Link
-						onClick={() => {
-							history.push("/addnewjob");
-						}}
-					>
-						Post your offer !
-					</Nav.Link>
-					<Nav.Link
-						onClick={() => {
-							history.push("/users");
-						}}
-					>
-						Users
-					</Nav.Link>
-				</Nav>
+		<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+			<Container className="py-3 ml">
+				<LinkContainer to="/">
+					<Navbar.Brand>{user ? user.email : "Welcome"}</Navbar.Brand>
+				</LinkContainer>
+				<LinkContainer to="/addnewjob">
+					<Navbar.Brand>Add new job offer</Navbar.Brand>
+				</LinkContainer>
+				{user ? (
+					<LinkContainer to="/signout">
+						<Navbar.Brand>Signout</Navbar.Brand>
+					</LinkContainer>
+				) : (
+					<LinkContainer to="/login">
+						<Navbar.Brand>Login</Navbar.Brand>
+					</LinkContainer>
+				)}
 
-				<Button style={{ background: "#F08E32 ", border: "none" }}>
-					{user ? user.email : ""}
-				</Button>
-				<SignOut />
-			</Navbar>
-			<Login />
-		</div>
+				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+			</Container>
+		</Navbar>
+		// {/* <Navbar style={{ background: "#BD7028 ", border: "none" }}>
+		// 	<Navbar.Brand href="/">NAV</Navbar.Brand>
+		// 	<Nav className="mr-auto">
+		// 		<Nav.Link
+		// 			onClick={() => {
+		// 				history.push("/");
+		// 			}}
+		// 		>
+		// 			Home!
+		// 		</Nav.Link>
+		// 		<Nav.Link
+		// 			onClick={() => {
+		// 				history.push("/addnewjob");
+		// 			}}
+		// 		>
+		// 			Post your offer !
+		// 		</Nav.Link>
+		// 	</Nav>
+
+		// 	<Button style={{ background: "#F08E32 ", border: "none" }}>
+		// 		{user ? user.email : ""}
+		// 	</Button>
+		// 	<SignOut />
+		// </Navbar> */}
 	);
 };
 
