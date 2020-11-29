@@ -10,6 +10,8 @@ import ShowOffers from "./components/ShowOffers";
 import Home from "./components/Home";
 
 require("dotenv").config();
+const auth = fbase.auth();
+const { uid } = auth.currentUser == null ? "" : auth.currentUser;
 
 class App extends Component {
 	state = {
@@ -23,6 +25,11 @@ class App extends Component {
 			this.setState({ currentUser: user, pend: false });
 		});
 	}
+	componentDidUpdate() {
+		const { uid } = auth.currentUser == null ? "" : auth.currentUser;
+		console.log(`uid  ${uid} `);
+	}
+
 	render() {
 		return (
 			<div className="App">
@@ -31,9 +38,7 @@ class App extends Component {
 						<Navigation user={this.state.currentUser} />
 
 						<Switch>
-							<Route path="/addnewjob">
-								<AddJobForm />
-							</Route>
+							<Route path="/addnewjob">{uid != "" ? <AddJobForm /> : ""}</Route>
 							<Route path="/users">Users</Route>
 							<Route path="/" component={Home} exact />
 
@@ -44,7 +49,6 @@ class App extends Component {
 						</Switch>
 					</div>
 				</Router>
-				<Home />
 			</div>
 		);
 	}

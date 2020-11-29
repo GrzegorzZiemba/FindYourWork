@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ShowOffers from "./ShowOffers";
 import { db, fbase } from "../firebase/firebase";
-
+require("dotenv").config();
 class Home extends Component {
 	constructor(props) {
 		super(props);
@@ -15,6 +15,7 @@ class Home extends Component {
 		currentUser: null,
 		pend: false,
 	};
+
 	componentDidMount() {
 		console.log(db.collection("workplaces"));
 
@@ -41,8 +42,9 @@ class Home extends Component {
 	render() {
 		return (
 			<>
+				{console.log(this.state.data)}
 				{this.state.data.map((item, index) => {
-					console.log(index);
+					console.log("home");
 					return (
 						<>
 							<ShowOffers
@@ -51,6 +53,7 @@ class Home extends Component {
 								image={item.image}
 								position={item.position}
 								styleClass="right"
+								iden={item.uid}
 							/>
 						</>
 					);

@@ -1,12 +1,15 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-
+import { db, fbase } from "../firebase/firebase";
 import { Link } from "react-router-dom";
 import DeleteData from "./DeleteData";
 import ImageHexa from "./ImageHexa";
 import "./ShowOffers.css";
 
-const ShowOffers = ({ image, id, workplace, position, styleClass }) => {
+const auth = fbase.auth();
+const { uid } = auth.currentUser == null ? "" : auth.currentUser;
+
+const ShowOffers = ({ image, id, workplace, position, styleClass, iden }) => {
 	console.log("left");
 	return (
 		<div className="main">
@@ -24,14 +27,18 @@ const ShowOffers = ({ image, id, workplace, position, styleClass }) => {
 				<h1 className="position" key={workplace}>
 					{position}
 				</h1>
-				<div className="buttons">
-					<Link to={`/edit/${id}`}>
-						<Button style={{ background: "#BD7028 ", border: "none" }}>
-							Edit
-						</Button>
-					</Link>
-					<DeleteData id={id} className="button" />
-				</div>
+				{uid == iden ? (
+					<div className="buttons">
+						<Link to={`/edit/${id}`}>
+							<Button style={{ background: "#BD7028 ", border: "none" }}>
+								Edit
+							</Button>
+						</Link>
+						<DeleteData id={id} className="button" />
+					</div>
+				) : (
+					""
+				)}
 			</div>
 		</div>
 	);

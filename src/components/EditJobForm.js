@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { db } from "../firebase/firebase";
+import { db, fbase } from "../firebase/firebase";
 import { Form, Button } from "react-bootstrap";
 import { TextField } from "@material-ui/core";
+
+const auth = fbase.auth();
 
 const EditJobForm = () => {
 	let { jobId } = useParams();
 	const [work, setWork] = useState("");
 	const [position, setPosition] = useState("");
 	const [salary, setSalary] = useState("");
+	const uid = auth.currentUser.uid;
 
 	const editItem = (e) => {
 		e.preventDefault();
@@ -21,7 +24,6 @@ const EditJobForm = () => {
 	};
 
 	useEffect(() => {
-		console.log(jobId);
 		const docRef = db.collection("workplaces").doc(jobId);
 
 		docRef
@@ -40,40 +42,45 @@ const EditJobForm = () => {
 				console.log("Error getting document:", error);
 			});
 	}, []);
+	console.log(uid);
 
 	return (
 		<div>
-			<Form>
-				<TextField
-					id="standard-basic"
-					label="image"
-					type="text"
-					placeholder={work}
-					value={work}
-					onChange={(e) => setWork(e.target.value)}
-				/>
-				<TextField
-					id="standard-basic"
-					label="image"
-					type="text"
-					placeholder={position}
-					value={position}
-					onChange={(e) => setPosition(e.target.value)}
-				/>
+			{uid ? (
+				<Form>
+					<TextField
+						id="standard-basic"
+						label="image"
+						type="text"
+						placeholder={work}
+						value={work}
+						onChange={(e) => setWork(e.target.value)}
+					/>
+					<TextField
+						id="standard-basic"
+						label="image"
+						type="text"
+						placeholder={position}
+						value={position}
+						onChange={(e) => setPosition(e.target.value)}
+					/>
 
-				<TextField
-					id="standard-basic"
-					label="image"
-					type="number"
-					placeholder={salary}
-					value={salary}
-					onChange={(e) => setSalary(e.target.value)}
-				/>
+					<TextField
+						id="standard-basic"
+						label="image"
+						type="number"
+						placeholder={salary}
+						value={salary}
+						onChange={(e) => setSalary(e.target.value)}
+					/>
 
-				<Button variant="primary" type="submit" onClick={editItem}>
-					Submit
-				</Button>
-			</Form>
+					<Button variant="primary" type="submit" onClick={editItem}>
+						Submit
+					</Button>
+				</Form>
+			) : (
+				<p> NOtHinG</p>
+			)}
 		</div>
 	);
 };
