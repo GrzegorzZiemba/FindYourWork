@@ -27,6 +27,7 @@ const AddJobForm = () => {
 			image: image,
 			id: id,
 			uid: uid,
+			description: description,
 		});
 		history.push("/");
 	};
