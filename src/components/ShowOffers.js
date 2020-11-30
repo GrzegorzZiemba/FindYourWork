@@ -9,6 +9,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import { LinkContainer } from "react-router-bootstrap";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -24,7 +25,7 @@ const useStyles = makeStyles({
 	},
 });
 
-const ShowOffers = ({ image, id, workplace, position, styleClass, iden }) => {
+const ShowOffers = ({ image, id, workplace, position, iden }) => {
 	const classes = useStyles();
 	const user = fbase.auth().currentUser;
 	let { uid } = auth.currentUser == null ? "" : auth.currentUser;
@@ -41,18 +42,25 @@ const ShowOffers = ({ image, id, workplace, position, styleClass, iden }) => {
 	console.log(`iden ${iden}`);
 	return (
 		<Card className={classes.root}>
-			<CardActionArea>
-				<CardMedia className={classes.media} image={image} title={workplace} />
-				<CardContent>
-					<Typography gutterBottom variant="h5" component="h2">
-						{workplace}
-					</Typography>
-					<Typography variant="body2" color="textSecondary" component="p">
-						{position}
-					</Typography>
-				</CardContent>
-			</CardActionArea>
-
+			<LinkContainer to={`/offer/${id}`}>
+				<CardActionArea>
+					<CardMedia
+						className={classes.media}
+						image={
+							image ? image : "https://www.w3schools.com/w3css/img_lights.jpg"
+						}
+						title={workplace}
+					/>
+					<CardContent>
+						<Typography gutterBottom variant="h5" component="h2">
+							{workplace}
+						</Typography>
+						<Typography variant="body2" color="textSecondary" component="p">
+							{position}
+						</Typography>
+					</CardContent>
+				</CardActionArea>
+			</LinkContainer>
 			{uid == iden && uid != "" ? (
 				<CardActions>
 					<Link to={`/edit/${id}`}>

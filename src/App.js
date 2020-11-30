@@ -10,6 +10,7 @@ import ShowOffers from "./components/ShowOffers";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import SignOut from "./components/SignOut";
+import OfferPage from "./components/OfferPage";
 
 require("dotenv").config();
 const auth = fbase.auth();
@@ -48,6 +49,9 @@ class App extends Component {
 							<Route path="/signout" component={SignOut} exact />
 							<Route path="/edit/:jobId" exact>
 								<EditJobForm />
+							</Route>
+							<Route path="/offer/:jobId" exact>
+								<OfferPage />
 							</Route>
 						</Switch>
 					</div>
