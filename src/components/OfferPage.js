@@ -5,8 +5,10 @@ import { db, fbase } from "../firebase/firebase";
 import ShowOffers from "./ShowOffers";
 import "./EditJobForm.css";
 import { Row, Col, Image, ListGroup, Card } from "react-bootstrap";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
-const auth = fbase.auth();
+// https://nominatim.openstreetmap.org/search/Bytom?format=json&addressdetails=1&limit=1&polygon_svg=1    -> To get format json in lang log
+// later use https://leafletjs.com/reference-1.7.1.html -> to get map with lang log
 
 const OfferPage = () => {
 	let { jobId } = useParams();
@@ -15,7 +17,8 @@ const OfferPage = () => {
 	const [salary, setSalary] = useState("");
 	const [image, setImage] = useState("");
 	const [description, setDescription] = useState("");
-	const uid = auth.currentUser.uid;
+	const [obj, setObj] = useState();
+
 	const history = useHistory();
 
 	// const editItem = (e) => {
@@ -52,14 +55,28 @@ const OfferPage = () => {
 				console.log("Error getting document:", error);
 			});
 	}, []);
-	console.log(uid);
+
+	const getData = () => {
+		let obj;
+		fetch(
+			"https://nominatim.openstreetmap.org/search/Katowice?format=json&addressdetails=1&limit=1&polygon_svg=1 "
+		)
+			.then((res) => res.json())
+			.then((data) => setObj(data))
+			.then(() => {
+				console.log(obj);
+			});
+		console.log(obj);
+	};
+	const pos = [51.505, -0.09];
 
 	return (
 		<>
+			<button onClick={() => getData()}>KLIK</button>
 			<Link className="btn btn-light my-3" to="/">
-				Go Back
+				Go Back {obj ? `${obj[0].lat} ${obj[0].lon}` : ""}
 			</Link>
-
+			{/* 
 			<Row>
 				<Col md={6}>
 					<Image src={image} alt={work} fluid />
@@ -95,7 +112,19 @@ const OfferPage = () => {
 						</ListGroup>
 					</Card>
 				</Col>
-			</Row>
+			</Row> */}
+			<MapContainer center={pos} zoom={13} scrollWheelZoom={false}>
+				<TileLayer
+					attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+				/>
+				<Marker position={pos}>
+					<Popup>
+						A pretty CSS3 popup. <br /> Easily customizable.
+					</Popup>
+				</Marker>
+			</MapContainer>
+			,
 		</>
 	);
 };
