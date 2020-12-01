@@ -18,6 +18,7 @@ const OfferPage = () => {
 	const [image, setImage] = useState("");
 	const [description, setDescription] = useState("");
 	const [obj, setObj] = useState();
+	const [pos, setPos] = useState();
 
 	const history = useHistory();
 
@@ -59,20 +60,24 @@ const OfferPage = () => {
 	const getData = () => {
 		let obj;
 		fetch(
-			"https://nominatim.openstreetmap.org/search/Katowice?format=json&addressdetails=1&limit=1&polygon_svg=1 "
+			"https://nominatim.openstreetmap.org/search/Bytom?format=json&addressdetails=1&limit=1&polygon_svg=1 "
 		)
 			.then((res) => res.json())
-			.then((data) => setObj(data))
-			.then(() => {
-				console.log(obj);
-			});
+			.then((data) => setObj(data));
+		// .then(() => {
+		// 	setPos([obj[0].lat, obj[0].lon]);
+		// });
 		console.log(obj);
 	};
-	const pos = [51.505, -0.09];
+
+	const getCoordinates = async () => {
+		await getData();
+		await setPos([obj[0].lat, obj[0].lon]);
+	};
 
 	return (
 		<>
-			<button onClick={() => getData()}>KLIK</button>
+			<button onClick={() => getCoordinates()}>KLIK</button>
 			<Link className="btn btn-light my-3" to="/">
 				Go Back {obj ? `${obj[0].lat} ${obj[0].lon}` : ""}
 			</Link>
@@ -113,12 +118,16 @@ const OfferPage = () => {
 					</Card>
 				</Col>
 			</Row> */}
-			<MapContainer center={pos} zoom={13} scrollWheelZoom={false}>
+			<MapContainer
+				center={pos ? pos : [50.2598987, 19.0215852]}
+				zoom={13}
+				scrollWheelZoom={false}
+			>
 				<TileLayer
 					attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
-				<Marker position={pos}>
+				<Marker position={pos ? pos : [50.2598987, 19.0215852]}>
 					<Popup>
 						A pretty CSS3 popup. <br /> Easily customizable.
 					</Popup>
