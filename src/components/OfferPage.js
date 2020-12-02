@@ -19,7 +19,7 @@ const OfferPage = () => {
 	const [description, setDescription] = useState("");
 	const [obj, setObj] = useState();
 	const [pos, setPos] = useState();
-
+	const [city, setCity] = useState("");
 	const history = useHistory();
 
 	// const editItem = (e) => {
@@ -57,16 +57,21 @@ const OfferPage = () => {
 			});
 	}, []);
 
-	const getData = () => {
+	const getData = async () => {
+		console.log(`city on the getData ${city}`);
 		let obj;
-		fetch(
-			"https://nominatim.openstreetmap.org/search/Bytom?format=json&addressdetails=1&limit=1&polygon_svg=1 "
-		)
-			.then((res) => res.json())
-			.then((data) => setObj(data));
-		// .then(() => {
-		// 	setPos([obj[0].lat, obj[0].lon]);
-		// });
+		console.log(
+			`https://nominatim.openstreetmap.org/search/${city}?format=json&addressdetails=1&limit=1&polygon_svg=1`
+		);
+		const res = await fetch(
+			`https://nominatim.openstreetmap.org/search/${city}?format=json&addressdetails=1&limit=1&polygon_svg=1`
+		);
+		const data = await res.json();
+
+		await setObj(data);
+		// .then((data) => setObj(data))
+		// .then(() => console.log(obj + " this is data"));
+
 		console.log(obj);
 	};
 
@@ -74,9 +79,10 @@ const OfferPage = () => {
 		await getData();
 		await setPos([obj[0].lat, obj[0].lon]);
 	};
-
+	console.log(city);
 	return (
 		<>
+			<input name="city" onChange={(e) => setCity(e.target.value)}></input>
 			<button onClick={() => getCoordinates()}>KLIK</button>
 			<Link className="btn btn-light my-3" to="/">
 				Go Back {obj ? `${obj[0].lat} ${obj[0].lon}` : ""}
