@@ -83,6 +83,9 @@ const OfferPage = () => {
 	return (
 		<div className="flexcontainer">
 			<div>
+				<Link className="btn btn-light my-3" to="/">
+					Go Back
+				</Link>
 				<Col md={6}>
 					<Image src={image} alt={work} fluid />
 				</Col>
@@ -117,12 +120,10 @@ const OfferPage = () => {
 					</ListGroup>
 				</Card>
 			</div>
-			<div>
-				<input name="city" onChange={(e) => setCity(e.target.value)}></input>
-				<button onClick={() => getCoordinates()}>KLIK</button>
-				<Link className="btn btn-light my-3" to="/">
-					Go Back {obj ? `${obj[0].lat} ${obj[0].lon}` : ""}
-				</Link>
+			<div className="map">
+				{/* <input name="city" onChange={(e) => setCity(e.target.value)}></input>
+				<button onClick={() => getCoordinates()}>KLIK</button> */}
+
 				<MapContainer
 					center={pos ? pos : [50.2598987, 19.0215852]}
 					zoom={13}
