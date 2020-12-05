@@ -6,20 +6,50 @@
 }
 
 .leaflet-container {
-	margin: 5px;
+	margin: 15px;
 	width: 100%;
 	height: 100%;
-	border-radius: 30px;
-	box-shadow: 0 -3px 4px black;
+	border-radius: 40px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
 .flexcontainer {
 	display: flex;
-	border: 2px solid;
-	border-radius: 40px;
+
+	border-radius: 30px;
 	height: 90vh;
 	margin: 10px;
-	box-shadow: 0 0 10px black;
+
+	position: relative;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
+		0 0 40px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
+		0 0 40px rgba(0, 0, 0, 0.1) inset;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.flexcontainer:before,
+.flexcontainer:after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+	-moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+	top: 0;
+	bottom: 0;
+	left: 10px;
+	right: 10px;
+	-moz-border-radius: 100px / 10px;
+	border-radius: 100px / 10px;
+}
+.flexcontainer:after {
+	right: 10px;
+	left: auto;
+	-webkit-transform: skew(8deg) rotate(3deg);
+	-moz-transform: skew(8deg) rotate(3deg);
+	-ms-transform: skew(8deg) rotate(3deg);
+	-o-transform: skew(8deg) rotate(3deg);
+	transform: skew(8deg) rotate(3deg);
 }
 
 .flexcontainer div {
@@ -28,7 +58,7 @@
 }
 
 .flexcontainer .map {
-	margin: 5px;
+	margin: 25px;
 }
 
 @media (max-width: 700px) {
