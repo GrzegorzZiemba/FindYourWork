@@ -81,14 +81,8 @@ const OfferPage = () => {
 	};
 	console.log(city);
 	return (
-		<>
-			<input name="city" onChange={(e) => setCity(e.target.value)}></input>
-			<button onClick={() => getCoordinates()}>KLIK</button>
-			<Link className="btn btn-light my-3" to="/">
-				Go Back {obj ? `${obj[0].lat} ${obj[0].lon}` : ""}
-			</Link>
-			{/* 
-			<Row>
+		<div className="flexcontainer">
+			<div>
 				<Col md={6}>
 					<Image src={image} alt={work} fluid />
 				</Col>
@@ -102,45 +96,50 @@ const OfferPage = () => {
 						<ListGroup.Item>Description: {description}</ListGroup.Item>
 					</ListGroup>
 				</Col>
-				<Col md={3}>
-					<Card>
-						<ListGroup variant="flush">
-							<ListGroup.Item>
-								<Row>
-									<Col>Price:</Col>
-									<Col>
-										<strong>${salary}</strong>
-									</Col>
-								</Row>
-							</ListGroup.Item>
 
-							<ListGroup.Item>
-								<Row>
-									<Col>Status:</Col>
-									<Col>"Is ?"</Col>
-								</Row>
-							</ListGroup.Item>
-						</ListGroup>
-					</Card>
-				</Col>
-			</Row> */}
-			<MapContainer
-				center={pos ? pos : [50.2598987, 19.0215852]}
-				zoom={13}
-				scrollWheelZoom={false}
-			>
-				<TileLayer
-					attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-				/>
-				<Marker position={pos ? pos : [50.2598987, 19.0215852]}>
-					<Popup>
-						A pretty CSS3 popup. <br /> Easily customizable.
-					</Popup>
-				</Marker>
-			</MapContainer>
-			,
-		</>
+				<Card>
+					<ListGroup variant="flush">
+						<ListGroup.Item>
+							<Row>
+								<Col>Price:</Col>
+								<Col>
+									<strong>${salary}</strong>
+								</Col>
+							</Row>
+						</ListGroup.Item>
+
+						<ListGroup.Item>
+							<Row>
+								<Col>Status:</Col>
+								<Col>"Is ?"</Col>
+							</Row>
+						</ListGroup.Item>
+					</ListGroup>
+				</Card>
+			</div>
+			<div>
+				<input name="city" onChange={(e) => setCity(e.target.value)}></input>
+				<button onClick={() => getCoordinates()}>KLIK</button>
+				<Link className="btn btn-light my-3" to="/">
+					Go Back {obj ? `${obj[0].lat} ${obj[0].lon}` : ""}
+				</Link>
+				<MapContainer
+					center={pos ? pos : [50.2598987, 19.0215852]}
+					zoom={13}
+					scrollWheelZoom={false}
+				>
+					<TileLayer
+						attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+					/>
+					<Marker position={pos ? pos : [50.2598987, 19.0215852]}>
+						<Popup>
+							A pretty CSS3 popup. <br /> Easily customizable.
+						</Popup>
+					</Marker>
+				</MapContainer>
+			</div>
+		</div>
 	);
 };
 
