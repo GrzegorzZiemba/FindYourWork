@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams, Link } from "react-router-dom";
 import { db, fbase } from "../firebase/firebase";
 
-import ShowOffers from "./ShowOffers";
 import "./EditJobForm.css";
 import { Row, Col, Image, ListGroup, Card } from "react-bootstrap";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-
+import Map from "./Map";
 // https://nominatim.openstreetmap.org/search/Bytom?format=json&addressdetails=1&limit=1&polygon_svg=1    -> To get format json in lang log
 // later use https://leafletjs.com/reference-1.7.1.html -> to get map with lang log
 
@@ -17,8 +15,6 @@ const OfferPage = () => {
 	const [salary, setSalary] = useState("");
 	const [image, setImage] = useState("");
 	const [description, setDescription] = useState("");
-	const [obj, setObj] = useState();
-	const [pos, setPos] = useState();
 	const [city, setCity] = useState("");
 	const history = useHistory();
 
@@ -35,6 +31,11 @@ const OfferPage = () => {
 	// 	history.push("/");
 	// };
 
+	const addDefaultSrc = (e) => {
+		e.target.src =
+			"https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png";
+	};
+
 	useEffect(() => {
 		const docRef = db.collection("workplaces").doc(jobId);
 
@@ -47,6 +48,7 @@ const OfferPage = () => {
 					setSalary(doc.data().salary);
 					setImage(doc.data().image);
 					setDescription(doc.data().description);
+					setCity(doc.data().city);
 				} else {
 					// doc.data() will be undefined in this case
 					console.log("No such document!");
@@ -57,88 +59,64 @@ const OfferPage = () => {
 			});
 	}, []);
 
-	const getData = async () => {
-		console.log(`city on the getData ${city}`);
-		let obj;
-		console.log(
-			`https://nominatim.openstreetmap.org/search/${city}?format=json&addressdetails=1&limit=1&polygon_svg=1`
-		);
-		const res = await fetch(
-			`https://nominatim.openstreetmap.org/search/${city}?format=json&addressdetails=1&limit=1&polygon_svg=1`
-		);
-		const data = await res.json();
-
-		await setObj(data);
-		// .then((data) => setObj(data))
-		// .then(() => console.log(obj + " this is data"));
-
-		console.log(obj);
-	};
-
-	const getCoordinates = async () => {
-		await getData();
-		await setPos([obj[0].lat, obj[0].lon]);
-	};
 	console.log(city);
+
 	return (
 		<div className="flexcontainer">
-			<div>
+			<div className="left">
 				<Link className="btn btn-light my-3" to="/">
-					Go Back
+					Go Back + {city}
 				</Link>
-				<Col md={6}>
-					<Image src={image} alt={work} fluid />
-				</Col>
+				<div className="box">
+					<img
+						src={image}
+						onError={addDefaultSrc}
+						className="imgbox"
+						alt="Cloudy Sky"
+					/>
+					<div className="avatar">
+						<img src={image} onError={addDefaultSrc} alt="Cloudy Sky" />
+					</div>
+				</div>
+
 				<Col md={3}>
-					<ListGroup variant="flush">
-						<ListGroup.Item>
+					<ListGroup variant="flush" className="rounder">
+						<ListGroup.Item className="rounder">
+							{" "}
 							<h3>{work}</h3>
 						</ListGroup.Item>
 
-						<ListGroup.Item>Price: ${salary}</ListGroup.Item>
-						<ListGroup.Item>Description: {description}</ListGroup.Item>
+						<ListGroup.Item className="rounder">
+							Price: ${salary}
+						</ListGroup.Item>
+						<ListGroup.Item className="rounder">
+							Description: {description}
+						</ListGroup.Item>
 					</ListGroup>
 				</Col>
 
 				<Card>
-					<ListGroup variant="flush">
-						<ListGroup.Item>
+					<ListGroup variant="flush" className="rounder">
+						<ListGroup.Item className="rounder">
 							<Row>
-								<Col>Price:</Col>
-								<Col>
+								<Col className="rounder">Price:</Col>
+								<Col className="rounder">
 									<strong>${salary}</strong>
 								</Col>
 							</Row>
 						</ListGroup.Item>
 
-						<ListGroup.Item>
-							<Row>
-								<Col>Status:</Col>
-								<Col>"Is ?"</Col>
+						<ListGroup.Item className="rounder">
+							<Row className="rounder">
+								<Col className="rounder">Status:</Col>
+								<Col className="rounder">"Is ?"</Col>
 							</Row>
 						</ListGroup.Item>
 					</ListGroup>
 				</Card>
 			</div>
 			<div className="map">
-				{/* <input name="city" onChange={(e) => setCity(e.target.value)}></input>
-				<button onClick={() => getCoordinates()}>KLIK</button> */}
-
-				<MapContainer
-					center={pos ? pos : [50.2598987, 19.0215852]}
-					zoom={13}
-					scrollWheelZoom={false}
-				>
-					<TileLayer
-						attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-					/>
-					<Marker position={pos ? pos : [50.2598987, 19.0215852]}>
-						<Popup>
-							A pretty CSS3 popup. <br /> Easily customizable.
-						</Popup>
-					</Marker>
-				</MapContainer>
+				<Map city={city ? city : "Krakow"} />
 			</div>
 		</div>
 	);

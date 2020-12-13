@@ -13,6 +13,7 @@ const AddJobForm = () => {
 	const [salary, setSalary] = useState("");
 	const [image, setImage] = useState("");
 	const [description, setDescription] = useState("");
+	const [city, setCity] = useState("");
 	const history = useHistory();
 	const { uid } = auth.currentUser == null ? "" : auth.currentUser;
 
@@ -28,6 +29,7 @@ const AddJobForm = () => {
 			id: id,
 			uid: uid,
 			description: description,
+			city: city,
 		});
 		history.push("/");
 	};
@@ -77,6 +79,15 @@ const AddJobForm = () => {
 						placeholder="Put image src"
 						value={image}
 						onChange={(e) => setImage(e.target.value)}
+					/>
+					<h5>Location of the job</h5>
+					<TextField
+						id="standard-basic"
+						label="image"
+						type="text"
+						placeholder="Put image src"
+						value={city}
+						onChange={(e) => setCity(e.target.value)}
 					/>
 					<h5>Description of the job </h5>
 					<TextareaAutosize

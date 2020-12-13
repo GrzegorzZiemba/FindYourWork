@@ -6,7 +6,6 @@
 }
 
 .leaflet-container {
-	margin: 15px;
 	width: 100%;
 	height: 100%;
 	border-radius: 40px;
@@ -52,13 +51,24 @@
 	transform: skew(8deg) rotate(3deg);
 }
 
+.rounder {
+	border-radius: 20px;
+}
+
 .flexcontainer div {
 	flex-basis: 50%;
 	margin: 2px;
 }
 
 .flexcontainer .map {
-	margin: 25px;
+	border-radius: 50px;
+	margin: 10px 20px 10px 10px;
+}
+
+.flexcontainer .left {
+	margin: 10px 10px 10px 20px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	border-radius: 50px;
 }
 
 @media (max-width: 700px) {
@@ -73,4 +83,34 @@
 	margin: 30px;
 	border-radius: 20px;
 	box-shadow: 0 0 5px #343a40;
+}
+
+.box {
+	width: 100%;
+	height: 200px;
+	margin: 30px 10px;
+}
+
+.box .imgbox {
+	width: 100%;
+	height: 100%;
+	background-size: contain;
+	filter: blur(8px);
+	position: relative;
+	border-radius: 33px;
+}
+
+.avatar {
+	position: absolute;
+	top: 100px;
+	width: 150px;
+	height: 150px;
+	border-radius: 50px;
+}
+
+.avatar img {
+	height: 100%;
+
+	background-size: contain;
+	border-radius: 50%;
 }
