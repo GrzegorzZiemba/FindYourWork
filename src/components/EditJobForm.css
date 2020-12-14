@@ -69,11 +69,16 @@
 	margin: 10px 10px 10px 20px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 	border-radius: 50px;
+	flex-basis: 50%;
+	overflow: hidden;
 }
 
 @media (max-width: 700px) {
-	.map {
+	.flexcontainer .map {
 		display: none;
+	}
+	.flexcontainer .left {
+		flex-basis: 100%;
 	}
 }
 

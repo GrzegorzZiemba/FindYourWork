@@ -59,7 +59,7 @@ const OfferPage = () => {
 			});
 	}, []);
 
-	console.log(city);
+	console.log(city + "in the offerPage");
 
 	return (
 		<div className="flexcontainer">
@@ -116,7 +116,7 @@ const OfferPage = () => {
 				</Card>
 			</div>
 			<div className="map">
-				<Map city={city ? city : "Krakow"} />
+				<Map city={city} />
 			</div>
 		</div>
 	);
