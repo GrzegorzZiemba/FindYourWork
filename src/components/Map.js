@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "./EditJobForm.css";
 import L from "leaflet";
+import { Spinner } from "react-bootstrap";
 
 const Map = ({ city }) => {
 	const [pos, setPos] = useState([]);
@@ -60,7 +61,11 @@ const Map = ({ city }) => {
 					</Marker>
 				</MapContainer>
 			) : (
-				<h1>Dupa</h1>
+				<div className="center">
+					<Spinner animation="border" className="spiner" role="status">
+						<span className="sr-only">Loading...</span>
+					</Spinner>
+				</div>
 			)}
 		</>
 	);

@@ -119,3 +119,14 @@
 	background-size: contain;
 	border-radius: 50%;
 }
+
+.center {
+	position: absolute;
+	left: 75%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.center .spiner {
+	padding: 100px;
+}
