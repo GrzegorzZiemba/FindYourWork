@@ -1,6 +1,9 @@
 import React, { useCallback } from "react";
+import { Form } from "react-bootstrap";
 import { withRouter } from "react-router";
 import { fbase } from "../firebase/firebase";
+import TextField from "@material-ui/core/TextField";
+import "./EditJobForm.css";
 
 const SignUp = ({ history }) => {
 	const handleSignUp = useCallback(
@@ -20,20 +23,20 @@ const SignUp = ({ history }) => {
 	);
 
 	return (
-		<div>
+		<div className="signCenter">
 			<h1>Sign up</h1>
-			<form onSubmit={handleSignUp}>
+			<Form onSubmit={handleSignUp}>
 				<label>
 					Email
-					<input name="email" type="email" placeholder="Email" />
+					<TextField name="email" type="email" placeholder="Email" />
 				</label>
 				<label>
 					Password
-					<input name="password" type="password" placeholder="Password" />
+					<TextField name="password" type="password" placeholder="Password" />
 				</label>
 
 				<button type="submit">Sign Up</button>
-			</form>
+			</Form>
 		</div>
 	);
 };

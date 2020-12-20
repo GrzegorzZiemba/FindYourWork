@@ -7,7 +7,7 @@ function SignOut() {
 	const auth = firebase.auth();
 	return (
 		auth.currentUser && (
-			<div className="signOutCenter">
+			<div className="signCenter">
 				<h1>Are you sure u wanna sign out?</h1>
 				<div>
 					<a href="/">

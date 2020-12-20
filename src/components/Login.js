@@ -3,6 +3,9 @@ import { withRouter, Redirect } from "react-router";
 import { fbase } from "../firebase/firebase.js";
 import "firebase/auth";
 import firebase from "firebase/app";
+import Singup from "./Singup.js";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Login = ({ history }) => {
 	const auth = firebase.auth();
@@ -29,7 +32,7 @@ const Login = ({ history }) => {
 	};
 
 	return (
-		<div>
+		<div className="signCenter">
 			<h1>Log in</h1>
 			<form onSubmit={handleLogin}>
 				<label>
@@ -45,6 +48,9 @@ const Login = ({ history }) => {
 			<button className="sign-in" onClick={signInWithGoogle}>
 				Sign in with Google
 			</button>
+			<Link to="/signup">
+				<Button>Don't have account ?</Button>
+			</Link>
 		</div>
 	);
 };
