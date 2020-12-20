@@ -138,5 +138,18 @@
 	align-items: center;
 	justify-content: center;
 	font-size: calc(10px + 2vmin);
-	color: white;
+	color: #343a40;
+}
+
+.formElement {
+	display: flex;
+	justify-content: flex-end;
+}
+.formButton {
+	display: flex;
+	justify-content: space-between;
+}
+
+.formElement h3 {
+	margin: 0px 30px 0 0;
 }

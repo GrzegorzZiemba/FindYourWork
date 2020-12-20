@@ -4,8 +4,10 @@ import { fbase } from "../firebase/firebase.js";
 import "firebase/auth";
 import firebase from "firebase/app";
 import Singup from "./Singup.js";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { TextField } from "@material-ui/core";
+import "./EditJobForm.css";
 
 const Login = ({ history }) => {
 	const auth = firebase.auth();
@@ -34,23 +36,25 @@ const Login = ({ history }) => {
 	return (
 		<div className="signCenter">
 			<h1>Log in</h1>
-			<form onSubmit={handleLogin}>
-				<label>
-					Email
-					<input name="email" type="email" placeholder="Email" />
-				</label>
-				<label>
-					Password
-					<input name="password" type="password" placeholder="Password" />
-				</label>
-				<button type="submit">Log in</button>
-			</form>
-			<button className="sign-in" onClick={signInWithGoogle}>
+			<Form onSubmit={handleLogin}>
+				<div className="formElement">
+					<h3>Email</h3>
+					<TextField name="email" type="email" placeholder="Email" />
+				</div>
+				<div className="formElement">
+					<h3>Password</h3>
+					<TextField name="password" type="password" placeholder="Password" />
+				</div>
+				<div className="formButton">
+					<Button type="submit">LogIn</Button>
+					<Link to="/signup">
+						<Button>Register</Button>
+					</Link>
+				</div>
+			</Form>
+			<Button className="sign-in" onClick={signInWithGoogle}>
 				Sign in with Google
-			</button>
-			<Link to="/signup">
-				<Button>Don't have account ?</Button>
-			</Link>
+			</Button>
 		</div>
 	);
 };
