@@ -11,7 +11,11 @@ function SignOut() {
 				<h1>Are you sure u wanna sign out?</h1>
 				<div>
 					<a href="/">
-						<Button className="sign-out" onClick={() => auth.signOut()}>
+						<Button
+							className="sign-out"
+							size="lg"
+							onClick={() => auth.signOut()}
+						>
 							Yes
 						</Button>
 					</a>

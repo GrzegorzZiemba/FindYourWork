@@ -52,6 +52,7 @@ const Login = ({ history }) => {
 					</Link>
 				</div>
 			</Form>
+
 			<Button className="sign-in" onClick={signInWithGoogle}>
 				Sign in with Google
 			</Button>

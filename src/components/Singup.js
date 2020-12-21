@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { withRouter } from "react-router";
 import { fbase } from "../firebase/firebase";
 import TextField from "@material-ui/core/TextField";
@@ -15,6 +15,9 @@ const SignUp = ({ history }) => {
 					.auth()
 					.createUserWithEmailAndPassword(email.value, password.value);
 				history.push("/");
+				alert(
+					`Your password is ${password.value} and your logging email is ${email.value} REMEMBER TO SAVE IT!`
+				);
 			} catch (error) {
 				alert(error);
 			}
@@ -26,16 +29,18 @@ const SignUp = ({ history }) => {
 		<div className="signCenter">
 			<h1>Sign up</h1>
 			<Form onSubmit={handleSignUp}>
-				<label>
-					Email
+				<div className="formElement">
+					<h3>Email </h3>
 					<TextField name="email" type="email" placeholder="Email" />
-				</label>
-				<label>
-					Password
+				</div>
+				<div className="formElement">
+					<h3>Password</h3>
 					<TextField name="password" type="password" placeholder="Password" />
-				</label>
+				</div>
 
-				<button type="submit">Sign Up</button>
+				<div className="formSignin">
+					<Button type="submit">Sign Up</Button>
+				</div>
 			</Form>
 		</div>
 	);

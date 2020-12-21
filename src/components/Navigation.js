@@ -1,10 +1,11 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import SignOut from "./SignOut";
 import Login from "./Login";
 import { TextareaAutosize } from "@material-ui/core";
+import "./EditJobForm.css";
 
 // Private and public routes -> what is visible for them  - logged or not
 // Make it look better :)
@@ -12,25 +13,38 @@ import { TextareaAutosize } from "@material-ui/core";
 
 const Navigation = ({ user, history }) => {
 	return (
-		<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+		<Navbar
+			collapseOnSelect
+			expand="lg"
+			bg="dark"
+			variant="dark"
+			className="nav"
+		>
 			<Container className="py-3 ml">
 				<LinkContainer to="/">
-					<Navbar.Brand>{user ? user.email : "Welcome"}</Navbar.Brand>
+					<Button>
+						<Navbar.Brand>{user ? "You are logged!" : "Welcome"}</Navbar.Brand>
+					</Button>
 				</LinkContainer>
-
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="ml-auto">
 						<LinkContainer to="/addnewjob">
-							<Navbar.Brand>Add new job offer</Navbar.Brand>
+							<Button>
+								<Navbar.Brand>Add new job offer</Navbar.Brand>
+							</Button>
 						</LinkContainer>
 						{user ? (
 							<LinkContainer to="/signout">
-								<Navbar.Brand>Signout</Navbar.Brand>
+								<Button>
+									<Navbar.Brand>Signout</Navbar.Brand>
+								</Button>
 							</LinkContainer>
 						) : (
 							<LinkContainer to="/login">
-								<Navbar.Brand>Login</Navbar.Brand>
+								<Button>
+									<Navbar.Brand>Login</Navbar.Brand>
+								</Button>
 							</LinkContainer>
 						)}
 					</Nav>
