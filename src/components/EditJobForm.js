@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, Route, useHistory, useParams } from "react-router-dom";
 import { db, fbase } from "../firebase/firebase";
 import { Form, Button } from "react-bootstrap";
 import { TextField } from "@material-ui/core";
 import ShowOffers from "./ShowOffers";
 import "./EditJobForm.css";
+import { LinkContainer } from "react-router-bootstrap";
 
 const auth = fbase.auth();
 
@@ -14,6 +15,7 @@ const EditJobForm = () => {
 	const [position, setPosition] = useState("");
 	const [salary, setSalary] = useState("");
 	const [image, setImage] = useState("");
+	const thisJob = jobId;
 	const uid = auth.currentUser.uid;
 	const history = useHistory();
 
@@ -49,10 +51,11 @@ const EditJobForm = () => {
 				console.log("Error getting document:", error);
 			});
 	}, []);
-	console.log(uid);
+	console.log(`${uid} and ${thisJob}`);
 
 	return (
 		<div>
+			{console.log(`/offer/${thisJob}`)}
 			{uid ? (
 				<React.Fragment className="oneByOne">
 					<Form className="oneByOne">
@@ -90,7 +93,10 @@ const EditJobForm = () => {
 							Submit
 						</Button>
 					</Form>
-					<ShowOffers orkplace={work} image={image} position={position} />
+
+					<LinkContainer to={`/offer/${thisJob}`}>
+						<h1>DUPAAA</h1>
+					</LinkContainer>
 				</React.Fragment>
 			) : (
 				<p> NOtHinG</p>
