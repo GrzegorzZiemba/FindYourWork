@@ -8,7 +8,8 @@ const Map = ({ city }) => {
 	const [pos, setPos] = useState([]);
 	const [flag, setFlag] = useState(true);
 	const [citi, setCiti] = useState(city);
-
+	const [isMap, setIsMap] = useState(false);
+	const placeId = "place_id";
 	const getData = () => {
 		setCiti(city);
 		console.log(city);
@@ -19,14 +20,22 @@ const Map = ({ city }) => {
 				`https://nominatim.openstreetmap.org/search/${city}?format=json&addressdetails=1&limit=1&polygon_svg=1`
 			)
 				.then((res) => {
-					console.log(
-						`https://nominatim.openstreetmap.org/search/${city}?format=json&addressdetails=1&limit=1&polygon_svg=1`
-					);
-					return res.json();
+					if (res.ok) {
+						return res.json();
+					} else {
+						throw new Error("Something went wrong");
+					}
 				})
+
 				.then((data) => {
-					console.log(data);
-					setPos([data[0].lat, data[0].lon]);
+					if (data) {
+						if (data[0] == undefined) {
+							setPos([50.365, 18.871]);
+							console.log("zrobilem ifa ");
+						} else {
+							setPos([data[0].lat, data[0].lon]);
+						}
+					}
 				});
 		}
 
@@ -39,8 +48,15 @@ const Map = ({ city }) => {
 	// 	await setPos([obj[0].lat, obj[0].lon]);
 	// };
 
+	const waitForFetch = () => {
+		setTimeout(() => {
+			setIsMap(true);
+		}, 2000);
+	};
+
 	useEffect(() => {
 		getData();
+		waitForFetch();
 	}, [city]);
 
 	return (
@@ -60,12 +76,24 @@ const Map = ({ city }) => {
 						</Popup>
 					</Marker>
 				</MapContainer>
-			) : (
+			) : !isMap ? (
 				<div className="center">
 					<Spinner animation="border" className="spiner" role="status">
 						<span className="sr-only">Loading...</span>
 					</Spinner>
 				</div>
+			) : (
+				<MapContainer center={pos} zoom={13} scrollWheelZoom={true}>
+					<TileLayer
+						attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+					/>
+					<Marker position={pos}>
+						<Popup>
+							A pretty CSS3 popup. <br /> Easily customizable.
+						</Popup>
+					</Marker>
+				</MapContainer>
 			)}
 		</>
 	);
