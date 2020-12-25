@@ -9,17 +9,24 @@ const SignUp = ({ history }) => {
 	const handleSignUp = useCallback(
 		async (event) => {
 			event.preventDefault();
-			const { email, password } = event.target.elements;
-			try {
-				await fbase
-					.auth()
-					.createUserWithEmailAndPassword(email.value, password.value);
-				history.push("/");
-				alert(
-					`Your password is ${password.value} and your logging email is ${email.value} REMEMBER TO SAVE IT!`
-				);
-			} catch (error) {
-				alert(error);
+
+			const { email, password, password1 } = event.target.elements;
+			console.log(password.value);
+			console.log(password1.value);
+			if (password.value !== password1.value) {
+				alert("bledne 2 hasla");
+			} else {
+				try {
+					await fbase
+						.auth()
+						.createUserWithEmailAndPassword(email.value, password.value);
+					history.push("/");
+					alert(
+						`Your password is ${password.value} and your logging email is ${email.value} REMEMBER TO SAVE IT!`
+					);
+				} catch (error) {
+					alert(error);
+				}
 			}
 		},
 		[history]
@@ -36,6 +43,10 @@ const SignUp = ({ history }) => {
 				<div className="formElement">
 					<h3>Password</h3>
 					<TextField name="password" type="password" placeholder="Password" />
+				</div>
+				<div className="formElement">
+					<h3>Password</h3>
+					<TextField name="password1" type="password" placeholder="Password" />
 				</div>
 
 				<div className="formSignin">
