@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { withRouter } from "react-router";
 import { fbase } from "../firebase/firebase";
 import TextField from "@material-ui/core/TextField";
+import swal from "sweetalert";
 import "./EditJobForm.css";
 
 const SignUp = ({ history }) => {
@@ -14,7 +15,7 @@ const SignUp = ({ history }) => {
 			console.log(password.value);
 			console.log(password1.value);
 			if (password.value !== password1.value) {
-				alert("bledne 2 hasla");
+				swal("Wrong password", "Password does not match", "error");
 			} else {
 				try {
 					await fbase
