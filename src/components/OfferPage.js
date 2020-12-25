@@ -8,8 +8,13 @@ import Map from "./Map";
 // https://nominatim.openstreetmap.org/search/Bytom?format=json&addressdetails=1&limit=1&polygon_svg=1    -> To get format json in lang log
 // later use https://leafletjs.com/reference-1.7.1.html -> to get map with lang log
 
-const OfferPage = () => {
+const OfferPage = ({ job }) => {
+	console.log(`${job} JOB :D`);
 	let { jobId } = useParams();
+	console.log(`${jobId} ? JOB ID ?`);
+	if (!jobId) {
+		jobId = job;
+	}
 	const [work, setWork] = useState("");
 	const [position, setPosition] = useState("");
 	const [salary, setSalary] = useState("");

@@ -160,11 +160,14 @@
 }
 
 .nav {
-	border-radius: 10px;
+	border-radius: 40px;
 }
 
-.nav button {
-	margin: 10px;
+.nav .navLink {
 	text-align: center;
 	border: 1px solid #fa9335;
+}
+
+.nav .navLink:hover {
+	background-color: #fa9335;
 }

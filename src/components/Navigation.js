@@ -29,19 +29,19 @@ const Navigation = ({ user, history }) => {
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="ml-auto">
-						<LinkContainer to="/addnewjob">
+						<LinkContainer to="/addnewjob" className="navLink">
 							<Button>
 								<Navbar.Brand>Add new job offer</Navbar.Brand>
 							</Button>
 						</LinkContainer>
 						{user ? (
-							<LinkContainer to="/signout">
+							<LinkContainer to="/signout" className="navLink">
 								<Button>
 									<Navbar.Brand>Signout</Navbar.Brand>
 								</Button>
 							</LinkContainer>
 						) : (
-							<LinkContainer to="/login">
+							<LinkContainer to="/login" className="navLink">
 								<Button>
 									<Navbar.Brand>Login</Navbar.Brand>
 								</Button>

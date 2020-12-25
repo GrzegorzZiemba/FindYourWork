@@ -6,6 +6,7 @@ import { TextField } from "@material-ui/core";
 import ShowOffers from "./ShowOffers";
 import "./EditJobForm.css";
 import { LinkContainer } from "react-router-bootstrap";
+import OfferPage from "./OfferPage";
 
 const auth = fbase.auth();
 
@@ -95,7 +96,7 @@ const EditJobForm = () => {
 					</Form>
 
 					<LinkContainer to={`/offer/${thisJob}`}>
-						<h1>DUPAAA</h1>
+						<OfferPage job={thisJob} />
 					</LinkContainer>
 				</React.Fragment>
 			) : (
