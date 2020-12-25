@@ -7,6 +7,9 @@ import { useHistory } from "react-router-dom";
 import "./AddJobForm.css";
 import { TextareaAutosize } from "@material-ui/core";
 const auth = fbase.auth();
+let tillDate = new Date();
+tillDate.setDate(tillDate.getDate() + 30);
+
 const AddJobForm = () => {
 	const [work, setWork] = useState("");
 	const [position, setPosition] = useState("");
@@ -30,6 +33,7 @@ const AddJobForm = () => {
 			uid: uid,
 			description: description,
 			city: city,
+			activeTill: tillDate,
 		});
 		history.push("/");
 	};

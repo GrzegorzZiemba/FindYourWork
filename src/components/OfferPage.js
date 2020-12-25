@@ -86,23 +86,23 @@ const OfferPage = ({ job }) => {
 
 				<Col md={3}>
 					<ListGroup variant="flush" className="rounder">
-						<ListGroup.Item className="rounder">
-							{" "}
-							<h3>{work}</h3>
-						</ListGroup.Item>
-
-						<ListGroup.Item className="rounder">
-							Price: ${salary}
-						</ListGroup.Item>
-						<ListGroup.Item className="rounder">
-							Description: {description}
-						</ListGroup.Item>
+						<Row className="rounder">
+							<ListGroup.Item>
+								<h3>{work}</h3>
+							</ListGroup.Item>
+						</Row>
+						<Row className="rounder">
+							<ListGroup.Item>Price: ${salary}</ListGroup.Item>
+						</Row>
+						<Row className="rounder">
+							<ListGroup.Item>Description: {description}</ListGroup.Item>
+						</Row>
 					</ListGroup>
 				</Col>
 
 				<Card>
 					<ListGroup variant="flush" className="rounder">
-						<ListGroup.Item className="rounder">
+						<ListGroup.Item>
 							<Row>
 								<Col className="rounder">Price:</Col>
 								<Col className="rounder">
@@ -111,10 +111,10 @@ const OfferPage = ({ job }) => {
 							</Row>
 						</ListGroup.Item>
 
-						<ListGroup.Item className="rounder">
+						<ListGroup.Item>
 							<Row className="rounder">
 								<Col className="rounder">Status:</Col>
-								<Col className="rounder">"Is ?"</Col>
+								<Col className="rounder">Active till </Col>
 							</Row>
 						</ListGroup.Item>
 					</ListGroup>
