@@ -1,23 +1,33 @@
 .oneByOne {
-	margin: 0 auto;
 	display: flex !important;
 	flex-direction: column !important;
-	max-width: 1000px;
+	max-width: 400px;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
 }
 
 .subButton {
 	margin: 40px;
 }
 
-.textArea {
-	background-color: #fa9335 !important;
-	color: black !important;
-	border: 1px solid black;
-}
-::placeholder {
-	color: black;
-}
-
 h5 {
 	margin: 20px;
+}
+
+.infusion-field {
+	position: relative;
+	margin: 7px 0;
+
+	z-index: 1;
+	padding: 8px 12px;
+	border-radius: 5px;
+	box-shadow: 0 0 5px 10px transparent, 0 1px 0 rgba(0, 0, 0, 0.08) inset;
+	line-height: 1.5em;
+	width: 40%;
+	background-color: #b8bec3;
+}
+
+::placeholder {
+	color: black;
 }
