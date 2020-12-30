@@ -175,3 +175,11 @@
 .description {
 	min-width: 600px;
 }
+
+div {
+	width: 100%;
+}
+
+div h1 {
+	text-align: center;
+}

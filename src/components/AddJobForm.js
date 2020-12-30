@@ -48,10 +48,10 @@ const AddJobForm = () => {
 			{uid ? (
 				<Form onSubmit={handleSubmit} className="oneByOne">
 					{" "}
-					<input className="infusion-field" />
+					<input className="inputField" />
 					<h5>Your company name</h5>
 					<input
-						className="infusion-field"
+						className="inputField"
 						id="standard-basic"
 						label="Company Name"
 						type="text"
@@ -61,7 +61,7 @@ const AddJobForm = () => {
 					/>
 					<h5>Position are you looking for</h5>
 					<input
-						className="infusion-field"
+						className="inputField"
 						id="standard-basic"
 						label="Position of the"
 						type="text"
@@ -71,7 +71,7 @@ const AddJobForm = () => {
 					/>
 					<h5>Salary</h5>
 					<input
-						className="infusion-field"
+						className="inputField"
 						id="standard-basic"
 						label="Salary"
 						type="number"
@@ -81,7 +81,7 @@ const AddJobForm = () => {
 					/>
 					<h5>Your logo / Company img in the link</h5>
 					<input
-						className="infusion-field"
+						className="inputField"
 						id="standard-basic"
 						label="image"
 						type="text"
@@ -91,7 +91,7 @@ const AddJobForm = () => {
 					/>
 					<h5>Location of the job</h5>
 					<input
-						className="infusion-field"
+						className="inputField"
 						id="standard-basic"
 						label="image"
 						type="text"

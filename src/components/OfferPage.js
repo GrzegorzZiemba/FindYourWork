@@ -133,7 +133,9 @@ const OfferPage = ({ job }) => {
 			</div>
 		</div>
 	) : (
-		<div>oferta nie istnieje</div>
+		<div>
+			<h1>This offer is unavailable</h1>
+		</div>
 	);
 };
 
