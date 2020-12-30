@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { db, fbase } from "../firebase/firebase";
 import { Link } from "react-router-dom";
@@ -14,7 +14,8 @@ import { LinkContainer } from "react-router-bootstrap";
 import { makeStyles } from "@material-ui/core/styles";
 
 const auth = fbase.auth();
-
+let today = new Date();
+today.setDate(today.getDate());
 const useStyles = makeStyles({
 	root: {
 		width: 345,
@@ -27,6 +28,7 @@ const useStyles = makeStyles({
 
 const ShowOffers = ({ image, id, workplace, position, iden }) => {
 	const classes = useStyles();
+	const [activeTill, setActiveTill] = useState("");
 	const user = fbase.auth().currentUser;
 	let { uid } = auth.currentUser == null ? "" : auth.currentUser;
 	fbase.auth().onAuthStateChanged(function (user) {
@@ -36,8 +38,24 @@ const ShowOffers = ({ image, id, workplace, position, iden }) => {
 			uid = "Unknown";
 		}
 	});
+
 	useEffect(() => {
 		const { uid } = auth.currentUser == null ? "" : auth.currentUser;
+		const docRef = db.collection("workplaces").doc(id);
+
+		docRef
+			.get()
+			.then(function (doc) {
+				if (doc.exists) {
+					setActiveTill(doc.data().activeTill.toDate());
+				} else {
+					// doc.data() will be undefined in this case
+					console.log("No such document!");
+				}
+			})
+			.catch(function (error) {
+				console.log("Error getting document:", error);
+			});
 	}, uid);
 	console.log(`iden ${iden}`);
 	return (
@@ -53,7 +71,9 @@ const ShowOffers = ({ image, id, workplace, position, iden }) => {
 					/>
 					<CardContent>
 						<Typography gutterBottom variant="h5" component="h2">
-							{workplace}
+							{activeTill > today
+								? workplace
+								: "Work offer is disabled, due to expiriation date"}
 						</Typography>
 						<Typography variant="body2" color="textSecondary" component="p">
 							{position}
@@ -64,9 +84,15 @@ const ShowOffers = ({ image, id, workplace, position, iden }) => {
 			{uid == iden && uid != "" ? (
 				<CardActions>
 					<Link to={`/edit/${id}`}>
-						<Button size="small" color="primary">
-							Edit
-						</Button>
+						{activeTill > today ? (
+							<Button size="small" color="primary">
+								Edit
+							</Button>
+						) : (
+							<Button size="small" color="primary" disabled>
+								Edit
+							</Button>
+						)}
 					</Link>
 					<DeleteData id={id} className="button" />
 				</CardActions>

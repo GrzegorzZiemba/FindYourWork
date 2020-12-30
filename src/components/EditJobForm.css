@@ -51,10 +51,6 @@
 	transform: skew(8deg) rotate(3deg);
 }
 
-.rounder {
-	border-radius: 20px;
-}
-
 .flexcontainer div {
 	flex-basis: 50%;
 	margin: 2px;
@@ -175,3 +171,7 @@
 .rounder {
 	background-color: #343a40;
 } */
+
+.description {
+	min-width: 600px;
+}
