@@ -14,7 +14,7 @@
 
 .flexcontainer {
 	display: flex;
-
+	width: 92%;
 	border-radius: 30px;
 	height: 90vh;
 	margin: 10px auto;
@@ -86,13 +86,38 @@
 	box-shadow: 0 0 5px #343a40;
 }
 
-.box {
+.box,
+.boxa {
 	width: 100%;
 	height: 200px;
 	margin: 30px 10px;
 }
+.boxa:before,
+.boxa:after {
+	position: absolute;
+	content: "Offer is currently unavailabe. Offer is currently unavailabe. Offer is currently unavailabe. Offer is currently unavailabe. Offer is currently unavailabe. Offer is currently unavailabe.";
+	background: gray;
+	opacity: 0.4;
+	display: block;
+	width: 100%;
+	height: 30px;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	z-index: 9999;
+}
 
-.box .imgbox {
+.boxa:after {
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.box .imgbox,
+.boxa .imgbox {
 	width: 100%;
 	height: 100%;
 	background-size: contain;
@@ -183,7 +208,9 @@ div {
 }
 
 div h1 {
+	display: block;
 	text-align: center;
+	margin: 0 auto;
 }
 
 .infoContainer {

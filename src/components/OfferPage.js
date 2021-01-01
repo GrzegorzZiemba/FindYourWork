@@ -69,13 +69,14 @@ const OfferPage = ({ job }) => {
 	console.log(city + "in the offerPage");
 	console.log(activeTill + " TIll");
 
-	return activeTill > today ? (
+	return (
 		<div className="flexcontainer">
 			<div className="left">
 				<Link className="btn btn-light my-3" to="/">
-					Go Back + {city}
+					Go Back
 				</Link>
-				<div className="box">
+
+				<div className={activeTill > today ? "box" : "boxa"}>
 					<img
 						src={image}
 						onError={addDefaultSrc}
@@ -107,10 +108,6 @@ const OfferPage = ({ job }) => {
 			<div className="map">
 				<Map city={city} />
 			</div>
-		</div>
-	) : (
-		<div>
-			<h1>This offer is unavailable</h1>
 		</div>
 	);
 };
