@@ -86,47 +86,23 @@ const OfferPage = ({ job }) => {
 						<img src={image} onError={addDefaultSrc} alt="Cloudy Sky" />
 					</div>
 				</div>
-
-				<Col md={3}>
-					<ListGroup variant="flush">
-						<Row className="rounder">
-							<ListGroup.Item>
-								<h3>{work}</h3>
-							</ListGroup.Item>
-						</Row>
-						<Row className="rounder">
-							<ListGroup.Item>Salary: ${salary}</ListGroup.Item>
-						</Row>
-						<Row className="rounder-description">
-							<ListGroup.Item className="description">
-								Description: {description}
-							</ListGroup.Item>
-							<ListGroup.Item className="description">
-								Active till: {formatDate(activeTill)}
-							</ListGroup.Item>
-						</Row>
-					</ListGroup>
-				</Col>
-
-				{/* <Card>
-				<ListGroup variant="flush" className="rounder">
-					<ListGroup.Item>
-						<Row>
-							<Col className="rounder">Price:</Col>
-							<Col className="rounder">
-								<strong>${salary}</strong>
-							</Col>
-						</Row>
-					</ListGroup.Item>
-
-					<ListGroup.Item>
-						<Row className="rounder">
-							<Col className="rounder">Status:</Col>
-							<Col className="rounder">Active till: {activeTill.day}</Col>
-						</Row>
-					</ListGroup.Item>
-				</ListGroup>
-			</Card> */}
+				<div classname="mainInfoContainer">
+					<div className="infoContainer">
+						<h1>{work}</h1>
+					</div>
+					<div className="infoContainer">
+						<h2>{position}</h2>
+					</div>
+					<div className="infoContainer">
+						<h2>{salary} $ per month</h2>
+					</div>
+					<div className="infoContainer descr">
+						<p>{description}</p>
+					</div>
+					<div className="infoContainer">
+						<p> offer is valid thill {formatDate(activeTill)}</p>{" "}
+					</div>
+				</div>
 			</div>
 			<div className="map">
 				<Map city={city} />
