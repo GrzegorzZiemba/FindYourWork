@@ -32,11 +32,16 @@ const Map = ({ city }) => {
 						if (data[0] == undefined) {
 							setPos([50.365, 18.871]);
 							console.log("zrobilem ifa ");
+						} else if (data[0].lat == null) {
+							setPos([50.365, 18.871]);
 						} else {
 							setPos([data[0].lat, data[0].lon]);
 						}
+					} else {
+						setPos([50.365, 18.871]);
 					}
-				});
+				})
+				.then(console.log(pos + " THIS IS A POSITION !!"));
 		}
 
 		console.log(`this is a data ${pos}`);

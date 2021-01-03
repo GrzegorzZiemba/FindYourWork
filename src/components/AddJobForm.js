@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { db, fbase } from "../firebase/firebase";
-import TextField from "@material-ui/core/TextField";
+
 import { useHistory } from "react-router-dom";
 import "./AddJobForm.css";
-import { TextareaAutosize } from "@material-ui/core";
+
 const auth = fbase.auth();
 let tillDate = new Date();
 tillDate.setDate(tillDate.getDate() + 30);
@@ -48,7 +48,6 @@ const AddJobForm = () => {
 			{uid ? (
 				<Form onSubmit={handleSubmit} className="oneByOne">
 					{" "}
-					<input className="inputField" />
 					<h5>Your company name</h5>
 					<input
 						className="inputField"
@@ -58,9 +57,11 @@ const AddJobForm = () => {
 						placeholder="Company Name"
 						value={work}
 						onChange={(e) => setWork(e.target.value)}
+						required
 					/>
 					<h5>Position are you looking for</h5>
 					<input
+						required
 						className="inputField"
 						id="standard-basic"
 						label="Position of the"
@@ -78,6 +79,7 @@ const AddJobForm = () => {
 						placeholder="How much your future employee will earn?"
 						value={salary}
 						onChange={(e) => setSalary(e.target.value)}
+						required
 					/>
 					<h5>Your logo / Company img in the link</h5>
 					<input
@@ -88,6 +90,7 @@ const AddJobForm = () => {
 						placeholder="Put image src"
 						value={image}
 						onChange={(e) => setImage(e.target.value)}
+						required
 					/>
 					<h5>Location of the job</h5>
 					<input
@@ -95,24 +98,25 @@ const AddJobForm = () => {
 						id="standard-basic"
 						label="image"
 						type="text"
-						placeholder="Put image src"
+						placeholder="Location"
 						value={city}
 						onChange={(e) => setCity(e.target.value)}
+						required
 					/>
 					<h5>Description of the job </h5>
-					<TextareaAutosize
-						className="textArea"
+					<textarea
+						className="inputField"
 						rowsMin={3}
 						rowsMax={4}
 						aria-label="maximum height"
 						placeholder="What should future employee do ?"
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
+						required
 					/>
 					<Button
 						style={{ background: "#705439", border: "none" }}
 						type="submit"
-						onClick={handleSubmit}
 						className="subButton"
 					>
 						Submit

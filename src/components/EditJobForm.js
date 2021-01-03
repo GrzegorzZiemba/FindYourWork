@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link, Route, useHistory, useParams } from "react-router-dom";
 import { db, fbase } from "../firebase/firebase";
 import { Form, Button } from "react-bootstrap";
-import { TextField } from "@material-ui/core";
+import { Input, TextField } from "@material-ui/core";
 import ShowOffers from "./ShowOffers";
 import "./EditJobForm.css";
 import "./AddJobForm.css";
 import { LinkContainer } from "react-router-bootstrap";
 import OfferPage from "./OfferPage";
+import "./form.css";
+import InputField from "./InputField";
 
 const auth = fbase.auth();
 
@@ -64,63 +66,41 @@ const EditJobForm = () => {
 			{console.log(`/offer/${thisJob}`)}
 			{uid ? (
 				<React.Fragment className="oneByOne">
-					<Form className="oneByOne">
-						<h5>Workplace</h5>
-						<input
-							className="inputField"
-							type="text"
-							placeholder={work}
-							value={work}
-							onChange={(e) => setWork(e.target.value)}
+					<Form className="form">
+						<h1 class="form__title">Sign In</h1>
+						<InputField name={" Workplace"} data={work} setChange={setWork} />
+						<InputField
+							name={"Position"}
+							data={position}
+							setChange={setPosition}
 						/>
-						<h5>Position</h5>
-						<input
-							className="inputField"
-							type="text"
-							placeholder={position}
-							value={position}
-							onChange={(e) => setPosition(e.target.value)}
-						/>
-						<h5>Salary</h5>
-						<input
-							className="inputField"
+						<InputField
+							name={"Salary"}
+							data={salary}
+							setChange={setSalary}
 							type="number"
-							placeholder={salary}
-							value={salary}
-							onChange={(e) => setSalary(e.target.value)}
 						/>
-						<h5>Image</h5>
+						<InputField name={"Image"} data={image} setChange={setImage} />
+
+						<InputField name={"City"} data={city} setChange={setCity} />
+
+						<InputField
+							name={"Description"}
+							data={description}
+							setChange={setDescription}
+							input={"textarea"}
+						/>
 						<input
-							className="inputField"
-							type="text"
-							placeholder={image}
-							value={image}
-							onChange={(e) => setImage(e.target.value)}
+							type="submit"
+							class="form__button"
+							value="Sign In"
+							onClick={editItem}
 						/>
-						<h5>Description</h5>
-						<input
-							className="inputField"
-							type="text"
-							placeholder={description}
-							value={description}
-							onChange={(e) => setDescription(e.target.value)}
-						/>
-						<h5>City</h5>
-						<input
-							className="inputField"
-							type="text"
-							placeholder={city}
-							value={city}
-							onChange={(e) => setCity(e.target.value)}
-						/>
-						<Button variant="primary" type="submit" onClick={editItem}>
-							Submit
-						</Button>
 					</Form>
 
-					<LinkContainer to={`/offer/${thisJob}`}>
+					{/* <LinkContainer to={`/offer/${thisJob}`}>
 						<OfferPage job={thisJob} />
-					</LinkContainer>
+					</LinkContainer> */}
 				</React.Fragment>
 			) : (
 				<p> NOtHinG</p>
