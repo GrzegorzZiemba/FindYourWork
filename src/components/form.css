@@ -64,6 +64,11 @@ h1 {
 	background: none;
 	z-index: 1;
 }
+.form__paragraph {
+	position: absolute;
+	right: 1rem;
+	bottom: 1rem;
+}
 .form__label {
 	position: absolute;
 	left: 1rem;
