@@ -1,16 +1,13 @@
 :root {
-	/*===== Colores =====*/
-	--first-color: #1a73e8;
+	--first-color: #000;
 	--input-color: #000;
 	--border-color: #000;
 
-	/*===== Fuente y tipografia =====*/
 	--body-font: "Roboto", sans-serif;
 	--normal-font-size: 1rem;
 	--small-font-size: 0.75rem;
 }
 
-/*===== BASE =====*/
 *,
 ::before,
 ::after {
@@ -26,20 +23,20 @@ h1 {
 	margin: 0;
 }
 
-/*===== FORM =====*/
 .l-form {
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	height: 100vh;
-}
-.form {
+	position: relative;
+	min-height: 100vh;
 	min-width: 360px;
 	max-width: 600px;
+	margin: 10px auto;
+}
+.form {
+	width: 100%;
 	padding: 4rem 2rem;
 	border-radius: 1rem;
 	box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
-	margin: 10px auto;
 }
 .form__title {
 	font-weight: 400;
@@ -68,18 +65,23 @@ h1 {
 	position: absolute;
 	right: 1rem;
 	bottom: 1rem;
+	background-color: #ddd;
+	transition: 0.33;
+	padding: 0 0.25rem;
+	z-index: 9999;
 }
 .form__label {
 	position: absolute;
 	left: 1rem;
 	top: 1rem;
 	padding: 0 0.25rem;
-	background-color: transparent;
+	background-color: #ddd;
 	color: var(--input-color);
 	font-size: var(--normal-font-size);
 	transition: 0.3s;
 }
 .form__button {
+	margin-top: 200px;
 	display: block;
 	margin-left: auto;
 	padding: 0.75rem 2rem;
@@ -118,4 +120,8 @@ h1 {
 /*Input focus*/
 .form__input:focus {
 	border: 1.5px solid var(--first-color);
+}
+
+textarea {
+	resize: none;
 }

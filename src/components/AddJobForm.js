@@ -5,6 +5,7 @@ import { db, fbase } from "../firebase/firebase";
 
 import { useHistory } from "react-router-dom";
 import "./AddJobForm.css";
+import InputField from "./InputField";
 
 const auth = fbase.auth();
 let tillDate = new Date();
@@ -46,82 +47,34 @@ const AddJobForm = () => {
 
 		<>
 			{uid ? (
-				<Form onSubmit={handleSubmit} className="oneByOne">
-					{" "}
-					<h5>Your company name</h5>
-					<input
-						className="inputField"
-						id="standard-basic"
-						label="Company Name"
-						type="text"
-						placeholder="Company Name"
-						value={work}
-						onChange={(e) => setWork(e.target.value)}
-						required
-					/>
-					<h5>Position are you looking for</h5>
-					<input
-						required
-						className="inputField"
-						id="standard-basic"
-						label="Position of the"
-						type="text"
-						placeholder="Who are you looking for ?"
-						value={position}
-						onChange={(e) => setPosition(e.target.value)}
-					/>
-					<h5>Salary</h5>
-					<input
-						className="inputField"
-						id="standard-basic"
-						label="Salary"
-						type="number"
-						placeholder="How much your future employee will earn?"
-						value={salary}
-						onChange={(e) => setSalary(e.target.value)}
-						required
-					/>
-					<h5>Your logo / Company img in the link</h5>
-					<input
-						className="inputField"
-						id="standard-basic"
-						label="image"
-						type="text"
-						placeholder="Put image src"
-						value={image}
-						onChange={(e) => setImage(e.target.value)}
-						required
-					/>
-					<h5>Location of the job</h5>
-					<input
-						className="inputField"
-						id="standard-basic"
-						label="image"
-						type="text"
-						placeholder="Location"
-						value={city}
-						onChange={(e) => setCity(e.target.value)}
-						required
-					/>
-					<h5>Description of the job </h5>
-					<textarea
-						className="inputField"
-						rowsMin={3}
-						rowsMax={4}
-						aria-label="maximum height"
-						placeholder="What should future employee do ?"
-						value={description}
-						onChange={(e) => setDescription(e.target.value)}
-						required
-					/>
-					<Button
-						style={{ background: "#705439", border: "none" }}
-						type="submit"
-						className="subButton"
-					>
-						Submit
-					</Button>{" "}
-				</Form>
+				<div class="l-form">
+					<Form className="form" onSubmit={handleSubmit}>
+						<InputField name={"Company Name"} data={work} setChange={setWork} />
+						<InputField
+							name={"Position"}
+							data={position}
+							setChange={setPosition}
+						/>
+						<InputField
+							name={"Monthy salary"}
+							data={salary}
+							setChange={setSalary}
+						/>
+						<InputField
+							name={"Image in pass in HtML"}
+							data={image}
+							setChange={setImage}
+						/>
+						<InputField name={"Location"} data={city} setChange={setCity} />
+						<InputField
+							name={"Description of the job"}
+							data={description}
+							setChange={setDescription}
+							input="textarea"
+						/>
+						<input type="submit" class="form__button" value="Add Offer" />
+					</Form>
+				</div>
 			) : (
 				""
 			)}

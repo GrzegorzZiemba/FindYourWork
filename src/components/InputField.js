@@ -14,7 +14,10 @@ const InputField = ({ name, data, setChange, type, input }) => {
 						setChange(e.target.value);
 					}}
 					value={data}
+					maxLength="500"
 					type={type ? type : "text"}
+					style={{ height: 200 }}
+					required
 				/>
 			) : (
 				<input
@@ -29,8 +32,10 @@ const InputField = ({ name, data, setChange, type, input }) => {
 							alert(`${data} is too long`);
 						}
 					}}
+					maxLength="50"
 					value={data}
 					type={type ? type : "text"}
+					required
 				/>
 			)}
 

@@ -50,6 +50,8 @@ const EditJobForm = () => {
 					setPosition(doc.data().position);
 					setSalary(doc.data().salary);
 					setImage(doc.data().image);
+					setCity(doc.data().city);
+					setDescription(doc.data().description);
 				} else {
 					// doc.data() will be undefined in this case
 					console.log("No such document!");
@@ -65,9 +67,9 @@ const EditJobForm = () => {
 		<div>
 			{console.log(`/offer/${thisJob}`)}
 			{uid ? (
-				<React.Fragment className="oneByOne">
-					<Form className="form">
-						<h1 class="form__title">Sign In</h1>
+				<div class="l-form">
+					<Form className="form" onSubmit={editItem}>
+						<h1 class="form__title">Editing form</h1>
 						<InputField name={" Workplace"} data={work} setChange={setWork} />
 						<InputField
 							name={"Position"}
@@ -90,18 +92,13 @@ const EditJobForm = () => {
 							setChange={setDescription}
 							input={"textarea"}
 						/>
-						<input
-							type="submit"
-							class="form__button"
-							value="Sign In"
-							onClick={editItem}
-						/>
+						<input type="submit" class="form__button" value="Edit" />
 					</Form>
-
-					{/* <LinkContainer to={`/offer/${thisJob}`}>
+					{/* 
+					<LinkContainer to={`/offer/${thisJob}`}>
 						<OfferPage job={thisJob} />
 					</LinkContainer> */}
-				</React.Fragment>
+				</div>
 			) : (
 				<p> NOtHinG</p>
 			)}
