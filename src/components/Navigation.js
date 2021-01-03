@@ -2,9 +2,7 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import SignOut from "./SignOut";
-import Login from "./Login";
-import { TextareaAutosize } from "@material-ui/core";
+
 import "./EditJobForm.css";
 
 // Private and public routes -> what is visible for them  - logged or not
@@ -21,14 +19,21 @@ const Navigation = ({ user, history }) => {
 			className="nav"
 		>
 			<Container className="py-3 ml">
-				<LinkContainer to="/">
+				<Nav>
 					<Button>
-						<Navbar.Brand>{user ? "You are logged!" : "Welcome"}</Navbar.Brand>
+						<Navbar.Brand>
+							{user ? "You are logged!" : "You are not logged"}
+						</Navbar.Brand>
 					</Button>
-				</LinkContainer>
+				</Nav>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="ml-auto">
+						<LinkContainer to="/" className="navLink">
+							<Button>
+								<Navbar.Brand>Home</Navbar.Brand>
+							</Button>
+						</LinkContainer>
 						<LinkContainer to="/addnewjob" className="navLink">
 							<Button>
 								<Navbar.Brand>Add new job offer</Navbar.Brand>

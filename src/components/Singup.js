@@ -4,7 +4,7 @@ import { withRouter } from "react-router";
 import { fbase } from "../firebase/firebase";
 import TextField from "@material-ui/core/TextField";
 import swal from "sweetalert";
-import "./EditJobForm.css";
+import "./form.css";
 
 const SignUp = ({ history }) => {
 	const handleSignUp = useCallback(
@@ -36,24 +36,53 @@ const SignUp = ({ history }) => {
 	return (
 		<div className="signCenter">
 			<h1>Sign up</h1>
-			<Form onSubmit={handleSignUp}>
-				<div className="formElement">
-					<h3>Email </h3>
-					<TextField name="email" type="email" placeholder="Email" />
-				</div>
-				<div className="formElement">
-					<h3>Password</h3>
-					<TextField name="password" type="password" placeholder="Password" />
-				</div>
-				<div className="formElement">
-					<h3>Password</h3>
-					<TextField name="password1" type="password" placeholder="Password" />
-				</div>
+			<div class="l-form">
+				<Form className="form" onSubmit={handleSignUp}>
+					<div className="form__div">
+						<input
+							type="email"
+							placeholder=" "
+							className="form__input"
+							maxLength="50"
+							name="email"
+							required
+						/>
+						<label for="" className="form__label">
+							Email
+						</label>
+					</div>
+					<div className="form__div">
+						<input
+							type="password"
+							placeholder=" "
+							className="form__input"
+							maxLength="50"
+							name="password"
+							required
+						/>
+						<label for="" className="form__label">
+							Password
+						</label>
+					</div>
+					<div className="form__div">
+						<input
+							type="password"
+							placeholder=" "
+							className="form__input"
+							maxLength="50"
+							name="password1"
+							required
+						/>
+						<label for="" className="form__label">
+							Repeat Password
+						</label>
+					</div>
 
-				<div className="formSignin">
-					<Button type="submit">Sign Up</Button>
-				</div>
-			</Form>
+					<div className="formSignin">
+						<Button type="submit">Sign Up</Button>
+					</div>
+				</Form>
+			</div>
 		</div>
 	);
 };

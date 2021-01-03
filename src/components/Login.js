@@ -7,7 +7,7 @@ import Singup from "./Singup.js";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { TextField } from "@material-ui/core";
-import "./EditJobForm.css";
+import "./form.css";
 
 const Login = ({ history }) => {
 	const auth = firebase.auth();
@@ -36,26 +36,46 @@ const Login = ({ history }) => {
 	return (
 		<div className="signCenter">
 			<h1>Log in</h1>
-			<Form onSubmit={handleLogin}>
-				<div className="formElement">
-					<h3>Email</h3>
-					<TextField name="email" type="email" placeholder="Email" />
-				</div>
-				<div className="formElement">
-					<h3>Password</h3>
-					<TextField name="password" type="password" placeholder="Password" />
-				</div>
-				<div className="formButton">
-					<Button type="submit">LogIn</Button>
-					<Link to="/signup">
-						<Button>Register</Button>
-					</Link>
-				</div>
-			</Form>
+			<div class="l-form">
+				<Form className="form" onSubmit={handleLogin}>
+					<div className="form__div">
+						<input
+							type="email"
+							placeholder=" "
+							className="form__input"
+							maxLength="50"
+							name="email"
+							required
+						/>
+						<label for="" className="form__label">
+							Email
+						</label>
+					</div>
 
-			<Button className="sign-in" onClick={signInWithGoogle}>
-				Sign in with Google
-			</Button>
+					<div className="form__div">
+						<input
+							type="password"
+							placeholder=" "
+							className="form__input"
+							maxLength="50"
+							name="password"
+							required
+						/>
+						<label for="" className="form__label">
+							Password
+						</label>
+					</div>
+					<div className="formButton">
+						<Button type="submit">LogIn</Button>
+						<Link to="/signup">
+							<Button>Register</Button>
+						</Link>
+						<Button className="sign-in" onClick={signInWithGoogle}>
+							Sign in with Google
+						</Button>
+					</div>
+				</Form>
+			</div>
 		</div>
 	);
 };
