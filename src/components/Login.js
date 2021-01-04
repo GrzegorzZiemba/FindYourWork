@@ -1,12 +1,12 @@
-import React, { useCallback, useContext } from "react";
-import { withRouter, Redirect } from "react-router";
+import React, { useCallback } from "react";
+import { withRouter } from "react-router";
 import { fbase } from "../firebase/firebase.js";
 import "firebase/auth";
 import firebase from "firebase/app";
-import Singup from "./Singup.js";
+
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { TextField } from "@material-ui/core";
+
 import "./form.css";
 
 const Login = ({ history }) => {

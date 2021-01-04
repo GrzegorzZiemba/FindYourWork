@@ -9,7 +9,7 @@ function SignOut() {
 		auth.currentUser && (
 			<div className="signCenter">
 				<h1>Are you sure u wanna sign out?</h1>
-				<div>
+				<div className="signCenter">
 					<a href="/">
 						<Button
 							className="sign-out"

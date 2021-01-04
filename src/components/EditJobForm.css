@@ -153,11 +153,9 @@
 }
 
 .signCenter {
-	margin-top: 50px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+	margin: 50px auto;
+	width: 100%;
+	text-align: center;
 	font-size: calc(10px + 2vmin);
 	color: #343a40;
 }

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link, Route, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { db, fbase } from "../firebase/firebase";
-import { Form, Button } from "react-bootstrap";
-import { Input, TextField } from "@material-ui/core";
-import ShowOffers from "./ShowOffers";
+import { Form, Spinner } from "react-bootstrap";
+
 import "./EditJobForm.css";
 import "./AddJobForm.css";
-import { LinkContainer } from "react-router-bootstrap";
-import OfferPage from "./OfferPage";
+
 import "./form.css";
 import InputField from "./InputField";
 
@@ -22,7 +20,7 @@ const EditJobForm = () => {
 	const [description, setDescription] = useState("");
 	const [city, setCity] = useState("");
 	const thisJob = jobId;
-	const uid = auth.currentUser.uid;
+	const uid = auth.currentUser?.uid ? auth.currentUser.uid : "";
 	const history = useHistory();
 
 	const editItem = (e) => {
@@ -53,7 +51,6 @@ const EditJobForm = () => {
 					setCity(doc.data().city);
 					setDescription(doc.data().description);
 				} else {
-					// doc.data() will be undefined in this case
 					console.log("No such document!");
 				}
 			})
@@ -94,13 +91,13 @@ const EditJobForm = () => {
 						/>
 						<input type="submit" class="form__button" value="Edit" />
 					</Form>
-					{/* 
-					<LinkContainer to={`/offer/${thisJob}`}>
-						<OfferPage job={thisJob} />
-					</LinkContainer> */}
 				</div>
 			) : (
-				<p> NOtHinG</p>
+				<div className="center">
+					<Spinner animation="border" className="spiner" role="status">
+						<span className="sr-only">Loading...</span>
+					</Spinner>
+				</div>
 			)}
 		</div>
 	);

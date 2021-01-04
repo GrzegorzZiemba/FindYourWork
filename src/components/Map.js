@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "./EditJobForm.css";
-import L from "leaflet";
 import { Spinner } from "react-bootstrap";
 
 const Map = ({ city }) => {
 	const [pos, setPos] = useState([]);
-	const [flag, setFlag] = useState(true);
 	const [citi, setCiti] = useState(city);
 	const [isMap, setIsMap] = useState(false);
-	const placeId = "place_id";
 	const getData = () => {
 		setCiti(city);
 		console.log(city);
@@ -29,7 +26,7 @@ const Map = ({ city }) => {
 
 				.then((data) => {
 					if (data) {
-						if (data[0] == undefined) {
+						if (data[0] === undefined) {
 							setPos([50.365, 18.871]);
 							console.log("zrobilem ifa ");
 						} else if (data[0].lat == null) {

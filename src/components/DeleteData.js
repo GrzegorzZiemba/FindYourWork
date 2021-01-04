@@ -1,6 +1,6 @@
 import React from "react";
 import { db } from "../firebase/firebase";
-import { Badge, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const DeleteData = ({ id }) => {
 	return (

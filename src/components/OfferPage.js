@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams, Link } from "react-router-dom";
-import { db, fbase } from "../firebase/firebase";
+import { db } from "../firebase/firebase";
 
 import "./EditJobForm.css";
-import { Row, Col, Image, ListGroup, Card } from "react-bootstrap";
 import Map from "./Map";
 // https://nominatim.openstreetmap.org/search/Bytom?format=json&addressdetails=1&limit=1&polygon_svg=1    -> To get format json in lang log
 // later use https://leafletjs.com/reference-1.7.1.html -> to get map with lang log

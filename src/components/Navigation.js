@@ -1,15 +1,11 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 import "./EditJobForm.css";
 
-// Private and public routes -> what is visible for them  - logged or not
-// Make it look better :)
-// better form to login -> alltogether look it better :D
-
-const Navigation = ({ user, history }) => {
+const Navigation = ({ user }) => {
 	return (
 		<Navbar
 			collapseOnSelect
@@ -56,31 +52,6 @@ const Navigation = ({ user, history }) => {
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>
-
-		// {/* <Navbar style={{ background: "#BD7028 ", border: "none" }}>
-		// 	<Navbar.Brand href="/">NAV</Navbar.Brand>
-		// 	<Nav className="mr-auto">
-		// 		<Nav.Link
-		// 			onClick={() => {
-		// 				history.push("/");
-		// 			}}
-		// 		>
-		// 			Home!
-		// 		</Nav.Link>
-		// 		<Nav.Link
-		// 			onClick={() => {
-		// 				history.push("/addnewjob");
-		// 			}}
-		// 		>
-		// 			Post your offer !
-		// 		</Nav.Link>
-		// 	</Nav>
-
-		// 	<Button style={{ background: "#F08E32 ", border: "none" }}>
-		// 		{user ? user.email : ""}
-		// 	</Button>
-		// 	<SignOut />
-		// </Navbar> */}
 	);
 };
 
