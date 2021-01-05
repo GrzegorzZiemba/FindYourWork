@@ -17,6 +17,7 @@
     "firebase": "^8.0.0",
     "firebase-tools": "^9.1.0",
     "firebaseui": "^4.7.1",
+    "heroku": "^7.47.6",
     "leaflet": "^1.7.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
