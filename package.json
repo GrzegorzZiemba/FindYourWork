@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^12.6.0",
     "@types/react-router-dom": "^5.1.7",
     "bootstrap": "^4.5.3",
+    "create-react-app": "^4.0.1",
     "dotenv": "^8.2.0",
     "firebase": "^8.2.1",
     "firebase-tools": "^9.1.0",
