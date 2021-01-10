@@ -38,9 +38,9 @@ const AddJobForm = () => {
 		});
 		history.push("/");
 	};
-	useEffect(() => {
-		const { uid } = auth.currentUser == null ? "" : auth.currentUser;
-	}, uid);
+	// useEffect(() => {
+	// 	auth.currentUser == null ? "" : auth.currentUser;
+	// }, uid);
 
 	return (
 		<>

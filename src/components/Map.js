@@ -14,7 +14,9 @@ const Map = ({ city }) => {
 			console.log("doinciti");
 			console.log(city);
 			fetch(
-				`https://nominatim.openstreetmap.org/search/${city}?format=json&addressdetails=1&limit=1&polygon_svg=1`
+				`https://nominatim.openstreetmap.org/search/${encodeURIComponent(
+					city
+				)}?format=json&addressdetails=1&limit=1&polygon_svg=1`
 			)
 				.then((res) => {
 					if (res.ok) {
