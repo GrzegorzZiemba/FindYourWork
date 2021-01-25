@@ -5,10 +5,10 @@ import { Spinner } from "react-bootstrap";
 
 const Map = ({ city }) => {
 	const [pos, setPos] = useState([]);
-	const [citi, setCiti] = useState(city);
+	// const [citi, setCiti] = useState(city);
 	const [isMap, setIsMap] = useState(false);
 	const getData = () => {
-		setCiti(city);
+		// setCiti(city);
 		console.log(city);
 		if (city) {
 			console.log("doinciti");
@@ -61,7 +61,7 @@ const Map = ({ city }) => {
 	useEffect(() => {
 		getData();
 		waitForFetch();
-	}, [city]);
+	});
 
 	return (
 		<>

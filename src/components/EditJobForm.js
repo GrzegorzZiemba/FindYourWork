@@ -23,6 +23,9 @@ const EditJobForm = () => {
 	const uid = auth.currentUser?.uid ? auth.currentUser.uid : "";
 	const history = useHistory();
 
+	const callbackGetBack = (childData) => {
+		setWork(childData);
+	};
 	const editItem = (e) => {
 		e.preventDefault();
 		db.collection("workplaces").doc(jobId).update({
@@ -67,7 +70,14 @@ const EditJobForm = () => {
 				<div class="l-form">
 					<Form className="form" onSubmit={editItem}>
 						<h1 class="form__title">Editing form</h1>
-						<InputField name={" Workplace"} data={work} setChange={setWork} />
+						<InputField
+							name={" Workplace"}
+							data={work}
+							setChange={callbackGetBack}
+						>
+							{" "}
+							value DDDD{" "}
+						</InputField>
 						<InputField
 							name={"Position"}
 							data={position}
