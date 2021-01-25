@@ -61,7 +61,6 @@ const EditJobForm = () => {
 				console.log("Error getting document:", error);
 			});
 	}, []);
-	console.log(`${uid} and ${thisJob}`);
 
 	return (
 		<div>

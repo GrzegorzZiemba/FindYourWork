@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { db } from "../firebase/firebase";
 
 import "./EditJobForm.css";
@@ -22,7 +22,6 @@ const OfferPage = ({ job }) => {
 	const [description, setDescription] = useState("");
 	const [city, setCity] = useState("");
 	const [activeTill, setActiveTill] = useState("");
-	const history = useHistory();
 
 	const addDefaultSrc = (e) => {
 		e.target.src =
@@ -86,7 +85,7 @@ const OfferPage = ({ job }) => {
 						<img src={image} onError={addDefaultSrc} alt="Cloudy Sky" />
 					</div>
 				</div>
-				<div classname="mainInfoContainer">
+				<div className="mainInfoContainer">
 					<div className="infoContainer">
 						<h1>{work}</h1>
 					</div>

@@ -8,11 +8,7 @@ const Map = ({ city }) => {
 	// const [citi, setCiti] = useState(city);
 	const [isMap, setIsMap] = useState(false);
 	const getData = () => {
-		// setCiti(city);
-		console.log(city);
 		if (city) {
-			console.log("doinciti");
-			console.log(city);
 			fetch(
 				`https://nominatim.openstreetmap.org/search/${encodeURIComponent(
 					city
@@ -30,7 +26,6 @@ const Map = ({ city }) => {
 					if (data) {
 						if (data[0] === undefined) {
 							setPos([50.365, 18.871]);
-							console.log("zrobilem ifa ");
 						} else if (data[0].lat == null) {
 							setPos([50.365, 18.871]);
 						} else {
@@ -39,18 +34,9 @@ const Map = ({ city }) => {
 					} else {
 						setPos([50.365, 18.871]);
 					}
-				})
-				.then(console.log(pos + " THIS IS A POSITION !!"));
+				});
 		}
-
-		console.log(`this is a data ${pos}`);
 	};
-
-	// const getCoordinates = async () => {
-	// 	await getData();
-	// 	// console.log("data " + getData());
-	// 	await setPos([obj[0].lat, obj[0].lon]);
-	// };
 
 	const waitForFetch = () => {
 		setTimeout(() => {
@@ -60,14 +46,13 @@ const Map = ({ city }) => {
 
 	useEffect(() => {
 		getData();
-		waitForFetch();
+		if (!pos) {
+			waitForFetch();
+		}
 	});
 
 	return (
 		<>
-			{/* <input name="city" onChange={(e) => setCity(e.target.value)}></input>
-				<button onClick={() => getCoordinates()}>KLIK</button> */}
-
 			{pos.length > 1 ? (
 				<MapContainer center={pos} zoom={13} scrollWheelZoom={true}>
 					<TileLayer

@@ -1,25 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./form.css";
 const InputField = ({ name, data, setChange, type, input }) => {
 	const [count, setCount] = useState("");
-	const [val, setVal] = useState(data);
-	console.log("THIS IS " + val + "data it is " + data);
 
-	useEffect(() => {
-		setVal(data);
-	}, []);
 	return (
 		<div className="form__div">
 			{input ? (
 				<textarea
-					// placeholder={` ${data}`}
 					className="form__input"
 					onChange={(e) => {
 						setCount(e.target.value.length);
 						setChange(e.target.value);
-						setVal(e.target.value);
 					}}
-					value={val}
+					value={data}
 					maxLength="500"
 					type={type ? type : "text"}
 					style={{ height: 200 }}
@@ -27,19 +20,17 @@ const InputField = ({ name, data, setChange, type, input }) => {
 				/>
 			) : (
 				<input
-					// placeholder={` ${data}`}
 					className="form__input"
 					onChange={(e) => {
 						setCount(e.target.value.length);
 						if (count < input ? 500 : 50) {
 							setChange(e.target.value);
-							setVal(e.target.value);
 						} else {
 							alert(`${data} is too long`);
 						}
 					}}
 					maxLength="50"
-					value={val}
+					value={data}
 					type={type ? type : "text"}
 					required
 				/>

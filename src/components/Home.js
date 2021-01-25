@@ -49,6 +49,7 @@ class Home extends Component {
 							image={item.image}
 							position={item.position}
 							iden={item.uid}
+							key={index}
 						/>
 					);
 				})}

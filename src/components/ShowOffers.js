@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 const ShowOffers = ({ image, id, workplace, position, iden }) => {
 	const classes = useStyles();
 	const [activeTill, setActiveTill] = useState("");
-	const user = fbase.auth().currentUser;
+
 	let { uid } = auth.currentUser == null ? "" : auth.currentUser;
 	fbase.auth().onAuthStateChanged(function (user) {
 		if (user != null) {
@@ -40,7 +40,6 @@ const ShowOffers = ({ image, id, workplace, position, iden }) => {
 	});
 
 	useEffect(() => {
-		const { uid } = auth.currentUser == null ? "" : auth.currentUser;
 		const docRef = db.collection("workplaces").doc(id);
 
 		docRef
@@ -56,8 +55,8 @@ const ShowOffers = ({ image, id, workplace, position, iden }) => {
 			.catch(function (error) {
 				console.log("Error getting document:", error);
 			});
-	}, uid);
-	console.log(`iden ${iden}`);
+	}, [uid]);
+
 	return (
 		<Card className={classes.root}>
 			<LinkContainer to={`/offer/${id}`}>
@@ -81,7 +80,7 @@ const ShowOffers = ({ image, id, workplace, position, iden }) => {
 					</CardContent>
 				</CardActionArea>
 			</LinkContainer>
-			{uid == iden && uid != "" ? (
+			{uid === iden && uid !== "" ? (
 				<CardActions>
 					<Link to={`/edit/${id}`}>
 						{activeTill > today ? (
