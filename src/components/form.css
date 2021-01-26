@@ -94,6 +94,19 @@ h1 {
 	cursor: pointer;
 	transition: 0.3s;
 }
+
+@media (max-width: 800px) {
+	.formButton {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.formButton button {
+		margin: 5px auto;
+		width: 100%;
+	}
+}
+
 .form__button:hover {
 	box-shadow: 0 10px 36px rgba(0, 0, 0, 0.15);
 }
@@ -124,4 +137,7 @@ h1 {
 
 textarea {
 	resize: none;
+}
+
+.button_option {
 }

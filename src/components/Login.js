@@ -70,9 +70,7 @@ const Login = ({ history }) => {
 						<Link to="/signup">
 							<Button>Register</Button>
 						</Link>
-						<Button className="sign-in" onClick={signInWithGoogle}>
-							Sign in with Google
-						</Button>
+						<Button onClick={signInWithGoogle}>Sign in with Google</Button>
 					</div>
 				</Form>
 			</div>

@@ -1,3 +1,7 @@
+body {
+	font-size: 62.5%;
+}
+
 .oneByOne {
 	margin: 0 auto;
 	display: flex !important;
@@ -69,12 +73,34 @@
 	overflow: hidden;
 }
 
-@media (max-width: 700px) {
+.flexcontainer .left h1 {
+	font-size: 2rem;
+	text-align: center;
+	padding-top: 2.5rem;
+}
+
+.flexcontainer .left h2 {
+	font-size: 1.5rem;
+	padding-top: 1rem;
+}
+
+.flexcontainer .left p {
+	padding-top: 1rem;
+	font-size: 0.9rem;
+}
+
+@media (max-width: 800px) {
 	.flexcontainer .map {
 		display: none;
 	}
 	.flexcontainer .left {
 		flex-basis: 100%;
+	}
+}
+
+@media (min-width: 800px) and (max-width: 1000px) {
+	html {
+		font-size: 80%;
 	}
 }
 
