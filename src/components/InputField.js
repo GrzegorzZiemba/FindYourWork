@@ -23,13 +23,13 @@ const InputField = ({ name, data, setChange, type, input }) => {
 					className="form__input"
 					onChange={(e) => {
 						setCount(e.target.value.length);
-						if (count < input ? 500 : 50) {
+						if (count < input ? 500 : 70) {
 							setChange(e.target.value);
 						} else {
 							alert(`${data} is too long`);
 						}
 					}}
-					maxLength="50"
+					maxLength="70"
 					value={data}
 					type={type ? type : "text"}
 					required
@@ -40,7 +40,7 @@ const InputField = ({ name, data, setChange, type, input }) => {
 				{name}
 			</label>
 			<p className="form__paragraph">
-				{count} / {input ? 500 : 50}
+				{count} / {input ? 500 : 70}
 			</p>
 		</div>
 	);

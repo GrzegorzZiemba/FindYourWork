@@ -23,9 +23,26 @@ const EditJobForm = () => {
 	const uid = auth.currentUser?.uid ? auth.currentUser.uid : "";
 	const history = useHistory();
 
-	const callbackGetBack = (childData) => {
+	const callbackSetWork = (childData) => {
 		setWork(childData);
 	};
+
+	const callbackSetPosition = (childData) => {
+		setPosition(childData);
+	};
+	const callbackSetSalary = (childData) => {
+		setSalary(childData);
+	};
+	const callbackSetImage = (childData) => {
+		setImage(childData);
+	};
+	const callbackSetDescription = (childData) => {
+		setDescription(childData);
+	};
+	const callbackSetCity = (childData) => {
+		setCity(childData);
+	};
+
 	const editItem = (e) => {
 		e.preventDefault();
 		db.collection("workplaces").doc(jobId).update({
@@ -72,7 +89,7 @@ const EditJobForm = () => {
 						<InputField
 							name={" Workplace"}
 							data={work}
-							setChange={callbackGetBack}
+							setChange={callbackSetWork}
 						>
 							{" "}
 							value DDDD{" "}
@@ -80,22 +97,26 @@ const EditJobForm = () => {
 						<InputField
 							name={"Position"}
 							data={position}
-							setChange={setPosition}
+							setChange={callbackSetPosition}
 						/>
 						<InputField
 							name={"Salary"}
 							data={salary}
-							setChange={setSalary}
+							setChange={callbackSetSalary}
 							type="number"
 						/>
-						<InputField name={"Image"} data={image} setChange={setImage} />
+						<InputField
+							name={"Image"}
+							data={image}
+							setChange={callbackSetImage}
+						/>
 
-						<InputField name={"City"} data={city} setChange={setCity} />
+						<InputField name={"City"} data={city} setChange={callbackSetCity} />
 
 						<InputField
 							name={"Description"}
 							data={description}
-							setChange={setDescription}
+							setChange={callbackSetDescription}
 							input={"textarea"}
 						/>
 						<input type="submit" class="form__button" value="Edit" />
