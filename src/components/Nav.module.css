@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Khula:wght@400;700&display=swap");
+.navbar {
+	background: #333a3f;
+	height: 60px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	font-family: "Khula", sans-serif;
+}
+
+.container {
+	max-width: 1200px;
+	color: white;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.logo {
+	font-size: 20px;
+}
+
+.buttons {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.button {
+	height: 30px;
+	border: white 1.5px solid;
+	color: white;
+	background: #333a3f;
+	border-radius: 30px;
+	padding: 0 10px;
+	line-height: 30px;
+	margin-right: 10px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.button:hover {
+	background-color: #fff;
+	color: #333a3f;
+	font-weight: bold;
+}
+
+.separator {
+	display: block;
+	margin: 0 10px;
+	height: 30px;
+	width: 2px;
+	color: white;
+	border-left: 1px solid #ccc;
+}
+.button:focus {
+	outline: none;
+}
+
+.paragraph {
+	font-size: 17px;
+	margin: 0 10px;
+	line-height: 100%;
+}
+
+.nofocus {
+	display: flex;
+	color: white;
+	cursor: pointer;
+	outline: none;
+}
+
+.nofocus:focus,
+.nofocus:active {
+	color: white !important;
+	outline: none !important;
+}
+
+@media (max-width: 780px) {
+	.logo {
+		display: none;
+	}
+	.button {
+		font-size: 12px;
+	}
+}
