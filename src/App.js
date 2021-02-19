@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { fbase } from "./firebase/firebase";
-import AddJobForm from "./components/AddJobForm";
-import EditJobForm from "./components/EditJobForm";
-import Navigation from "./components/Navigation";
+import AddJobForm from "./components/forms/AddJobForm";
+import EditJobForm from "./components/forms/EditJobForm";
+import Navigation from "./components/nav/Navigation";
 import Singup from "./components/Singup";
 
 import Home from "./components/Home";

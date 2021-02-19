@@ -82,17 +82,18 @@ const ShowOffers = ({ image, id, workplace, position, iden }) => {
 			</LinkContainer>
 			{uid === iden && uid !== "" ? (
 				<CardActions>
-					<Link to={`/edit/${id}`}>
-						{activeTill > today ? (
+					{activeTill > today ? (
+						<Link to={`/edit/${id}`}>
 							<Button size="small" color="primary">
 								Edit
 							</Button>
-						) : (
-							<Button size="small" color="primary" disabled>
-								Edit
-							</Button>
-						)}
-					</Link>
+						</Link>
+					) : (
+						<Button size="small" color="primary" disabled>
+							Edit
+						</Button>
+					)}
+
 					<DeleteData id={id} className="button" />
 				</CardActions>
 			) : (

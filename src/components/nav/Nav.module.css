@@ -87,3 +87,9 @@ a:hover {
 		font-size: 12px;
 	}
 }
+
+@media (max-width: 350px) {
+	.button {
+		font-size: 11px;
+	}
+}

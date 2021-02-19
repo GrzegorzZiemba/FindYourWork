@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { db } from "../firebase/firebase";
-
-import "./EditJobForm.css";
+import styles from "./offerPage.module.css";
 import Map from "./Map";
 // https://nominatim.openstreetmap.org/search/Bytom?format=json&addressdetails=1&limit=1&polygon_svg=1    -> To get format json in lang log
 // later use https://leafletjs.com/reference-1.7.1.html -> to get map with lang log
@@ -68,43 +67,38 @@ const OfferPage = ({ job }) => {
 	console.log(activeTill + " TIll");
 
 	return (
-		<div className="flexcontainer">
-			<div className="left">
-				<Link className="btn btn-light my-3" to="/">
-					Go Back
-				</Link>
-
-				<div className={activeTill > today ? "box" : "boxa"}>
+		<div className={styles.container}>
+			<div className={styles.left}>
+				<div className={styles.imgContainer}>
 					<img
 						src={image}
+						className={styles.img}
 						onError={addDefaultSrc}
-						className="imgbox"
 						alt="Cloudy Sky"
 					/>
-					<div className="avatar">
-						<img src={image} onError={addDefaultSrc} alt="Cloudy Sky" />
-					</div>
+					<h1>{work}</h1>
 				</div>
-				<div className="mainInfoContainer">
-					<div className="infoContainer">
-						<h1>{work}</h1>
-					</div>
-					<div className="infoContainer">
+				<div className={styles.infoContainer}>
+					<div className={styles.info}></div>
+					<div className={styles.info}>
 						<h2>{position}</h2>
 					</div>
-					<div className="infoContainer">
+					<div className={styles.info}>
 						<h2>{salary} $ per month</h2>
 					</div>
-					<div className="infoContainer descr">
+					<div className={styles.infoDescription}>
 						<p>{description}</p>
 					</div>
-					<div className="infoContainer">
+					<div className={styles.info}>
 						<p> offer is valid thill {formatDate(activeTill)}</p>{" "}
 					</div>
 				</div>
+				<Link className="btn btn-light my-3" to="/">
+					Go Back
+				</Link>
 			</div>
-			<div className="map">
-				<Map city={city} />
+			<div className={styles.map}>
+				<Map city={city} work={work} />
 			</div>
 		</div>
 	);

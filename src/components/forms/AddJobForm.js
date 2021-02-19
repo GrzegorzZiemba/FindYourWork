@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
-import { db, fbase } from "../firebase/firebase";
-
+import { db, fbase } from "../../firebase/firebase";
 import { useHistory } from "react-router-dom";
-import "./AddJobForm.css";
-import InputField from "./InputField";
-
+import InputField from "../InputField";
+import styles from "../Form.module.css";
 const auth = fbase.auth();
 let tillDate = new Date();
 tillDate.setDate(tillDate.getDate() + 30);
@@ -42,8 +40,8 @@ const AddJobForm = () => {
 	return (
 		<>
 			{uid ? (
-				<div class="l-form">
-					<Form className="form" onSubmit={handleSubmit}>
+				<div className={styles.container}>
+					<Form className={styles.form} onSubmit={handleSubmit}>
 						<InputField name={"Company Name"} data={work} setChange={setWork} />
 						<InputField
 							name={"Position"}
@@ -54,9 +52,10 @@ const AddJobForm = () => {
 							name={"Monthy salary"}
 							data={salary}
 							setChange={setSalary}
+							type={"number"}
 						/>
 						<InputField
-							name={"Image in pass in HtML"}
+							name={"Image (pass it via url)"}
 							data={image}
 							setChange={setImage}
 						/>
@@ -74,12 +73,6 @@ const AddJobForm = () => {
 				""
 			)}
 		</>
-
-		/* <input type="text" name="companyName" value={companyName} onChange={change}/>
-            <input type="text" name="position" value={position} onChange={change}/>
-            <input type="number" name="salary" value={salary} onChange={change}/> 
-            <button type='submit'>ok</button> */
-		// </form>
 	);
 };
 

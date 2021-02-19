@@ -3,7 +3,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "./EditJobForm.css";
 import { Spinner } from "react-bootstrap";
 
-const Map = ({ city }) => {
+const Map = ({ city, work }) => {
 	const [pos, setPos] = useState([]);
 	// const [citi, setCiti] = useState(city);
 	const [isMap, setIsMap] = useState(false);
@@ -61,7 +61,7 @@ const Map = ({ city }) => {
 					/>
 					<Marker position={pos}>
 						<Popup>
-							A pretty CSS3 popup. <br /> Easily customizable.
+							{city} <br /> {work}.
 						</Popup>
 					</Marker>
 				</MapContainer>
@@ -78,9 +78,7 @@ const Map = ({ city }) => {
 						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					/>
 					<Marker position={pos}>
-						<Popup>
-							A pretty CSS3 popup. <br /> Easily customizable.
-						</Popup>
+						<Popup>{work}</Popup>
 					</Marker>
 				</MapContainer>
 			)}

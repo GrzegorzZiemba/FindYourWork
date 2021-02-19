@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { db, fbase } from "../firebase/firebase";
+import { db, fbase } from "../../firebase/firebase";
 import { Form, Spinner } from "react-bootstrap";
 
-import "./EditJobForm.css";
-import "./AddJobForm.css";
+import styles from "../Form.module.css";
 
-import "./form.css";
-import InputField from "./InputField";
+import InputField from "../InputField";
 
 const auth = fbase.auth();
 
@@ -83,7 +81,7 @@ const EditJobForm = () => {
 		<div>
 			{console.log(`/offer/${thisJob}`)}
 			{uid ? (
-				<div class="l-form">
+				<div className={styles.container}>
 					<Form className="form" onSubmit={editItem}>
 						<h1 class="form__title">Editing form</h1>
 						<InputField

@@ -1,4 +1,4 @@
-:root {
+/* :root {
 	--first-color: #000;
 	--input-color: #000;
 	--border-color: #000;
@@ -12,7 +12,7 @@
 ::before,
 ::after {
 	box-sizing: border-box;
-}
+} */
 body {
 	margin: 0;
 	padding: 0;
@@ -65,7 +65,7 @@ h1 {
 	position: absolute;
 	right: 1rem;
 	bottom: 1rem;
-	background-color: #ddd;
+	background-color: #fff;
 	transition: 0.33;
 	padding: 0 0.25rem;
 	z-index: 9999;
@@ -75,7 +75,7 @@ h1 {
 	left: 1rem;
 	top: 1rem;
 	padding: 0 0.25rem;
-	background-color: #ddd;
+	background-color: #fff;
 	color: var(--input-color);
 	font-size: var(--normal-font-size);
 	transition: 0.3s;

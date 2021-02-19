@@ -1,0 +1,19 @@
+.container {
+	display: flex;
+	justify-content: center;
+	margin: 20px auto;
+	min-height: 70vh;
+	width: 90%;
+	max-width: 1200px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 2px 2px 7px #888;
+}
+
+.form {
+	display: flex;
+	flex-wrap: wrap;
+	height: 100%;
+	width: 100%;
+	padding: 40px 25px;
+}

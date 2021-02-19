@@ -1,10 +1,8 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
-
 import { LinkContainer } from "react-router-bootstrap";
 import styles from "./Nav.module.css";
-import "./EditJobForm.css";
-import logo from "../images/logo.png";
+import logo from "../../images/logo.png";
 
 const Navigation = ({ user }) => {
 	return (
