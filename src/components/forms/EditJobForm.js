@@ -6,6 +6,7 @@ import { Form, Spinner } from "react-bootstrap";
 import styles from "../Form.module.css";
 
 import InputField from "../InputField";
+import Button from "../Button";
 
 const auth = fbase.auth();
 
@@ -82,8 +83,17 @@ const EditJobForm = () => {
 			{console.log(`/offer/${thisJob}`)}
 			{uid ? (
 				<div className={styles.container}>
-					<Form className="form" onSubmit={editItem}>
-						<h1 class="form__title">Editing form</h1>
+					<form className={styles.form} onSubmit={editItem}>
+						<h1
+							style={{
+								textAlign: "center",
+								margin: "10px 0",
+								flexBasis: "100%",
+							}}
+						>
+							Edit
+						</h1>
+
 						<InputField
 							name={" Workplace"}
 							data={work}
@@ -108,17 +118,17 @@ const EditJobForm = () => {
 							data={image}
 							setChange={callbackSetImage}
 						/>
-
 						<InputField name={"City"} data={city} setChange={callbackSetCity} />
-
 						<InputField
 							name={"Description"}
 							data={description}
 							setChange={callbackSetDescription}
 							input={"textarea"}
 						/>
-						<input type="submit" class="form__button" value="Edit" />
-					</Form>
+						<div style={{ marginTop: "150px" }}>
+							<Button type="submit">Add offer</Button>
+						</div>
+					</form>
 				</div>
 			) : (
 				<div className="center">
