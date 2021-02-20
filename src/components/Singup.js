@@ -3,8 +3,8 @@ import React, { useCallback } from "react";
 import { withRouter } from "react-router";
 import { fbase } from "../firebase/firebase";
 import styles from "./Form.module.css";
-
-import Button from "./Button";
+import { Button } from "react-bootstrap";
+// import Button from "./Button";
 import swal from "sweetalert";
 
 const SignUp = ({ history }) => {

@@ -4,8 +4,9 @@ import { fbase } from "../firebase/firebase.js";
 import "firebase/auth";
 import firebase from "firebase/app";
 import styles from "./Form.module.css";
+import { Button } from "react-bootstrap";
 
-import Button from "./Button";
+// import Button from "./Button";
 import { Link } from "react-router-dom";
 
 const Login = ({ history }) => {
@@ -67,13 +68,20 @@ const Login = ({ history }) => {
 						Password
 					</label>
 				</div>
-				<div className={styles.div} style={{ alignSelf: "center" }}>
-					<Button type="submit">LogIn</Button>
-					<Link to="/signup">
-						<Button>Register</Button>
-					</Link>
-					<Button onClick={signInWithGoogle}>Sign in with Google</Button>
-				</div>
+				<Button color="secondary" style={{ margin: "0 20px" }} type="submit">
+					LogIn
+				</Button>
+				<Link to="/signup">
+					<Button color="primary">Register</Button>
+				</Link>
+				<Button
+					onClick={() => {
+						signInWithGoogle();
+					}}
+					style={{ margin: "0 20px" }}
+				>
+					Sign in with Google
+				</Button>
 			</form>
 		</div>
 	);

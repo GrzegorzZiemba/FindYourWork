@@ -5,6 +5,7 @@ import { db, fbase } from "../../firebase/firebase";
 import { useHistory } from "react-router-dom";
 import InputField from "../InputField";
 import styles from "../Form.module.css";
+import Button from "../Button";
 const auth = fbase.auth();
 let tillDate = new Date();
 tillDate.setDate(tillDate.getDate() + 30);
@@ -41,7 +42,7 @@ const AddJobForm = () => {
 		<>
 			{uid ? (
 				<div className={styles.container}>
-					<Form className={styles.form} onSubmit={handleSubmit}>
+					<form className={styles.form} onSubmit={handleSubmit}>
 						<InputField name={"Company Name"} data={work} setChange={setWork} />
 						<InputField
 							name={"Position"}
@@ -66,8 +67,10 @@ const AddJobForm = () => {
 							setChange={setDescription}
 							input="textarea"
 						/>
-						<input type="submit" class="form__button" value="Add Offer" />
-					</Form>
+						<div style={{ marginTop: "150px" }}>
+							<Button type="submit">Add offer</Button>
+						</div>
+					</form>
 				</div>
 			) : (
 				""
