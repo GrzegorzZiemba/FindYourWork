@@ -1,8 +1,10 @@
 import React, { useCallback } from "react";
-import { Button, Form } from "react-bootstrap";
+
 import { withRouter } from "react-router";
 import { fbase } from "../firebase/firebase";
-import InputField from "./InputField";
+import styles from "./Form.module.css";
+
+import Button from "./Button";
 import swal from "sweetalert";
 
 const SignUp = ({ history }) => {
@@ -33,55 +35,56 @@ const SignUp = ({ history }) => {
 	);
 
 	return (
-		<div className="signCenter">
-			<h1>Sign up</h1>
-			<div class="l-form">
-				<Form className="form" onSubmit={handleSignUp}>
-					<div className="form__div">
-						<input
-							type="email"
-							placeholder=" "
-							className="form__input"
-							maxLength="50"
-							name="email"
-							required
-						/>
-						<label for="" className="form__label">
-							Email
-						</label>
-					</div>
-					<div className="form__div">
-						<input
-							type="password"
-							placeholder=" "
-							className="form__input"
-							maxLength="50"
-							name="password"
-							required
-						/>
-						<label for="" className="form__label">
-							Password
-						</label>
-					</div>
-					<div className="form__div">
-						<input
-							type="password"
-							placeholder=" "
-							className="form__input"
-							maxLength="50"
-							name="password1"
-							required
-						/>
-						<label for="" className="form__label">
-							Repeat Password
-						</label>
-					</div>
-
-					<div className="formSignin">
-						<Button type="submit">Sign Up</Button>
-					</div>
-				</Form>
-			</div>
+		<div className={styles.container}>
+			<form className={styles.form} onSubmit={handleSignUp}>
+				<h1
+					style={{ textAlign: "center", margin: "10px 0", flexBasis: "100%" }}
+				>
+					Sign up
+				</h1>
+				<div className={styles.div}>
+					<input
+						type="email"
+						placeholder=" "
+						className={styles.input}
+						maxLength="50"
+						name="email"
+						required
+					/>
+					<label for="" className={styles.label}>
+						Email
+					</label>
+				</div>
+				<div className={styles.div}>
+					<input
+						type="password"
+						placeholder=" "
+						className={styles.input}
+						maxLength="50"
+						name="password"
+						required
+					/>
+					<label for="" className={styles.label}>
+						Password
+					</label>
+				</div>
+				<div className={styles.div}>
+					<input
+						type="password"
+						placeholder=" "
+						className={styles.input}
+						maxLength="50"
+						name="password1"
+						required
+					/>
+					<label for="" className={styles.label}>
+						Repeat Password
+					</label>
+				</div>
+				<div className={styles.div}>
+					<Button type="submit">Sign Up</Button>
+				</div>
+			</form>
 		</div>
 	);
 };
