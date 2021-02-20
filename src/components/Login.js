@@ -3,11 +3,10 @@ import { withRouter } from "react-router";
 import { fbase } from "../firebase/firebase.js";
 import "firebase/auth";
 import firebase from "firebase/app";
+import styles from "./Form.module.css";
 
-import { Button, Form } from "react-bootstrap";
+import Button from "./Button";
 import { Link } from "react-router-dom";
-
-import "./form.css";
 
 const Login = ({ history }) => {
 	const auth = firebase.auth();
@@ -34,46 +33,48 @@ const Login = ({ history }) => {
 	};
 
 	return (
-		<div className="signCenter">
-			<h1>Log in</h1>
-			<div class="l-form">
-				<Form className="form" onSubmit={handleLogin}>
-					<div className="form__div">
-						<input
-							type="email"
-							placeholder=" "
-							className="form__input"
-							maxLength="50"
-							name="email"
-							required
-						/>
-						<label for="" className="form__label">
-							Email
-						</label>
-					</div>
+		<div className={styles.container}>
+			<form className={styles.form} onSubmit={handleLogin}>
+				<h1
+					style={{ textAlign: "center", margin: "10px 0", flexBasis: "100%" }}
+				>
+					Log in
+				</h1>
+				<div className={styles.div}>
+					<input
+						type="email"
+						placeholder=" "
+						className={styles.input}
+						maxLength="50"
+						name="email"
+						required
+					/>
+					<label for="" className={styles.label}>
+						Email
+					</label>
+				</div>
 
-					<div className="form__div">
-						<input
-							type="password"
-							placeholder=" "
-							className="form__input"
-							maxLength="50"
-							name="password"
-							required
-						/>
-						<label for="" className="form__label">
-							Password
-						</label>
-					</div>
-					<div className="formButton">
-						<Button type="submit">LogIn</Button>
-						<Link to="/signup">
-							<Button>Register</Button>
-						</Link>
-						<Button onClick={signInWithGoogle}>Sign in with Google</Button>
-					</div>
-				</Form>
-			</div>
+				<div className={styles.div}>
+					<input
+						type="password"
+						placeholder=" "
+						className={styles.input}
+						maxLength="50"
+						name="password"
+						required
+					/>
+					<label for="" className={styles.label}>
+						Password
+					</label>
+				</div>
+				<div className={styles.div} style={{ alignSelf: "center" }}>
+					<Button type="submit">LogIn</Button>
+					<Link to="/signup">
+						<Button>Register</Button>
+					</Link>
+					<Button onClick={signInWithGoogle}>Sign in with Google</Button>
+				</div>
+			</form>
 		</div>
 	);
 };

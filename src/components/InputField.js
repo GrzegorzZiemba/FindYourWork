@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import "./form.css";
-const InputField = ({ name, data, setChange, type, input }) => {
+import styles from "./Form.module.css";
+const InputField = ({ name, data, setChange = () => {}, type, input }) => {
 	const [count, setCount] = useState("");
 
 	return (
-		<div className="form__div">
+		<div className={styles.div}>
 			{input ? (
 				<textarea
-					className="form__input"
+					className={styles.input}
 					onChange={(e) => {
 						setCount(e.target.value.length);
 						setChange(e.target.value);
@@ -20,7 +20,7 @@ const InputField = ({ name, data, setChange, type, input }) => {
 				/>
 			) : (
 				<input
-					className="form__input"
+					className={styles.input}
 					onChange={(e) => {
 						setCount(e.target.value.length);
 						if (count < input ? 500 : 70) {
@@ -36,10 +36,10 @@ const InputField = ({ name, data, setChange, type, input }) => {
 				/>
 			)}
 
-			<label for="" className="form__label">
+			<label for="" className={styles.label}>
 				{name}
 			</label>
-			<p className="form__paragraph">
+			<p className={styles.paragraph}>
 				{count} / {input ? 500 : 70}
 			</p>
 		</div>

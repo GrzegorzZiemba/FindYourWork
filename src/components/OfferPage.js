@@ -81,20 +81,34 @@ const OfferPage = ({ job }) => {
 				<div className={styles.infoContainer}>
 					<div className={styles.info}></div>
 					<div className={styles.info}>
-						<h2>{position}</h2>
+						<h3>Position </h3>
+						<p>{position}</p>
 					</div>
 					<div className={styles.info}>
-						<h2>{salary} $ per month</h2>
+						<h3>Salary </h3>
+						<p>{salary} $ per month</p>
 					</div>
-					<div className={styles.infoDescription}>
+					<div className={styles.info}>
+						<h3>City </h3>
+						<p>{city}</p>
+					</div>
+					<div className={styles.info}>
+						<h3>Description </h3>
 						<p>{description}</p>
 					</div>
 					<div className={styles.info}>
-						<p> offer is valid thill {formatDate(activeTill)}</p>{" "}
+						<h3>Expiry Date</h3>
+						<p>
+							{" "}
+							<i class="far fa-calendar-alt"></i>{" "}
+							{formatDate(activeTill) !== "NaN-NaN-NaN"
+								? formatDate(activeTill)
+								: " Offer is not valid "}
+						</p>{" "}
 					</div>
 				</div>
 				<Link className="btn btn-light my-3" to="/">
-					Go Back
+					Home
 				</Link>
 			</div>
 			<div className={styles.map}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import "./EditJobForm.css";
+
 import { Spinner } from "react-bootstrap";
 
 const Map = ({ city, work }) => {

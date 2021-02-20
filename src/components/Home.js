@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ShowOffers from "./ShowOffers";
 import { db, fbase } from "../firebase/firebase";
-import "./ShowOffers.css";
 
 require("dotenv").config();
 class Home extends Component {
@@ -18,6 +17,13 @@ class Home extends Component {
 		pend: false,
 	};
 
+	style = {
+		maxWidth: "1200px",
+		margin: "40px auto",
+		display: "flex",
+		justifyContent: "center",
+		flexWrap: "wrap",
+	};
 	componentDidMount() {
 		db.collection("workplaces").onSnapshot((snapshot) => {
 			const fu = snapshot.docs.map((doc) => {
@@ -40,7 +46,7 @@ class Home extends Component {
 
 	render() {
 		return (
-			<div className="main">
+			<div style={this.style}>
 				{this.state.data.map((item, index) => {
 					return (
 						<ShowOffers

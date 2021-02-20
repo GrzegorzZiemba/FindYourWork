@@ -13,6 +13,8 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import { makeStyles } from "@material-ui/core/styles";
 
+import styles from "./ShowOffers.module.css";
+
 const auth = fbase.auth();
 let today = new Date();
 today.setDate(today.getDate());
@@ -29,7 +31,10 @@ const useStyles = makeStyles({
 const ShowOffers = ({ image, id, workplace, position, iden }) => {
 	const classes = useStyles();
 	const [activeTill, setActiveTill] = useState("");
-
+	const addDefaultSrc = (e) => {
+		e.target.src =
+			"https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png";
+	};
 	let { uid } = auth.currentUser == null ? "" : auth.currentUser;
 	fbase.auth().onAuthStateChanged(function (user) {
 		if (user != null) {
@@ -63,9 +68,8 @@ const ShowOffers = ({ image, id, workplace, position, iden }) => {
 				<CardActionArea>
 					<CardMedia
 						className={classes.media}
-						image={
-							image ? image : "https://www.w3schools.com/w3css/img_lights.jpg"
-						}
+						image={image}
+						onError={addDefaultSrc}
 						title={workplace}
 					/>
 					<CardContent>

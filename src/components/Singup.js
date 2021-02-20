@@ -2,8 +2,8 @@ import React, { useCallback } from "react";
 import { Button, Form } from "react-bootstrap";
 import { withRouter } from "react-router";
 import { fbase } from "../firebase/firebase";
+import InputField from "./InputField";
 import swal from "sweetalert";
-import "./form.css";
 
 const SignUp = ({ history }) => {
 	const handleSignUp = useCallback(
@@ -21,7 +21,7 @@ const SignUp = ({ history }) => {
 						.auth()
 						.createUserWithEmailAndPassword(email.value, password.value);
 					history.push("/");
-					alert(
+					swal(
 						`Your password is ${password.value} and your logging email is ${email.value} REMEMBER TO SAVE IT!`
 					);
 				} catch (error) {
